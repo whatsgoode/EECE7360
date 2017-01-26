@@ -40,7 +40,7 @@ void Subset_Sum_Initialize (Subset_Sum_t zptHandle);
 
 // Control functions
 
-void Subset_Sum_Solve (Subset_Sum_t zptHandle)
+void Subset_Sum_Solve (Subset_Sum_t zptHandle);
 
 // Input functions
 
