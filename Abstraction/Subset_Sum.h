@@ -25,9 +25,12 @@ typedef void * Subset_Sum_t;
 //! The solver function and macro are used to easily create and provide
 //! solution functions to the solver.
 
-typedef void (*Algorithm_t)(void ** zpapvArgs);
+typedef void (*Algorithm_t)(uint32_t * zauwInput, uint32_t zuwSize,
+                                 uint32_t * zauwSolution, uint32_t zuwTarget);
 
-#define SUBSETSUM_ALGORITHM(Func)       void (Func) (void ** zpapvArgs)
+#define SUBSETSUM_ALGORITHM(Func)                                             \
+       void (Func) (uint32_t * zauwInput, uint32_t zuwSize,                   \
+                                uint32_t * zauwSolution, uint32_t zuwTarget)
 
 // ***** Function prototypes **************************************************
 
