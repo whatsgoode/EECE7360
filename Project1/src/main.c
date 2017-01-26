@@ -85,17 +85,16 @@ int main(int argc, char **argv)
         
         // Initialize the problem
         
-        Subset_Sum_Initialize(mptProblem);
-        Subset_Sum_ReadFromFile(mptProblem, argv[1]);
-        Subset_Sum_SetSolver(mptProblem, P1_Exhaustive);
+        Subset_Sum_Initialize(&mptProblem, argv[1]);
+        Subset_Sum_SetSolver(&mptProblem, P1_Exhaustive);
         
         // Solve the problem
         
-        Subset_Sum_Solve(mptProblem);
+        Subset_Sum_Solve(&mptProblem);
         
         // Cleanup
         
-        Subset_Sum_Free(mptProblem);
+        Subset_Sum_Free(&mptProblem);
         
         // TBD: Print some info to console ??
         
@@ -121,10 +120,7 @@ int main(int argc, char **argv)
 * \details     Solves an instance of Subset Sum by trying every solution until
 *              one works.
 *
-* \param[in]   zauwInput          Input set
-* \param[in]   zuwSize            Input size
-* \param[in]   zauwSolution       Solution set
-* \param[in]   zuwTarget          Target sum
+* \param[in]   zptInst            Instance to solve
 *
 * \retval      void
 *
@@ -134,5 +130,7 @@ SUBSETSUM_ALGORITHM(P1_Exhaustive)
     
     
 }
+
+// \}
 
 // \}
