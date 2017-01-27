@@ -36,7 +36,7 @@ SUBSETSUM_ALGORITHM(P1_Exhaustive);
 
 // ***** Local variables ******************************************************
 
-static Subset_Sum_t mptProblem;
+static Subset_Sum_t mtProblem;
 
 /**************************************************************************//**
 *
@@ -70,8 +70,7 @@ static Subset_Sum_t mptProblem;
 ******************************************************************************/
 
 int main(int argc, char **argv)
-{
-        
+{  
         
         // Verify all arguments were recieved
         
@@ -85,16 +84,21 @@ int main(int argc, char **argv)
         
         // Initialize the problem
         
-        Subset_Sum_Initialize(&mptProblem, argv[1]);
-        Subset_Sum_SetSolver(&mptProblem, P1_Exhaustive);
+        Subset_Sum_Initialize(&mtProblem, argv[1]);
+        Subset_Sum_SetSolver(&mtProblem, P1_Exhaustive);
         
         // Solve the problem
         
-        Subset_Sum_Solve(&mptProblem);
+        Subset_Sum_Solve(&mtProblem);
+
+        // Write outfile
+
+        Subset_SumDisplayData(&mtProblem);
+        Subset_SumWriteData(&mtProblem, "test");
         
         // Cleanup
         
-        Subset_Sum_Free(&mptProblem);
+        Subset_Sum_Free(&mtProblem);
         
         // TBD: Print some info to console ??
         
