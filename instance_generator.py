@@ -138,6 +138,10 @@ if __name__ == "__main__":
                         type=int,
                         default=2,
                         help='End set size. Default = %(default)d')
+    parser.add_argument('--stride_n',
+                        type=int,
+                        default=2,
+                        help='Stride to use for n. Default = %(default)d')    
     parser.add_argument('--start_b',
                         type=int,
                         default=1,
@@ -146,6 +150,10 @@ if __name__ == "__main__":
                         type=int,
                         default=2,
                         help='End bit size. Default = %(default)d')
+    parser.add_argument('--stride_b',
+                        type=int,
+                        default=1,
+                        help='Stride to use for b. Default = %(default)d')    
     parser.add_argument('-p',
                         action='store_true',
                         help='Only print out the list of generated cases.')
@@ -154,14 +162,15 @@ if __name__ == "__main__":
 
     assert args.start_n % 2 == 0, 'start_n must be even.'
     assert args.end_n % 2 == 0, 'end_n must be even.'
-
+    assert args.stride_n % 2 == 0, 'stride_n must be even.'
+    
     if args.s != -1:
         random.seed(args.s)
         pass
 
     # unroll the range of b and n values
-    b_values = range(args.start_b, args.end_b + 1)
-    n_values = range(args.start_n, args.end_n + 1, 2)
+    b_values = range(args.start_b, args.end_b + 1, args.stride_b)
+    n_values = range(args.start_n, args.end_n + 1, args.stride_n)
         
     instances = gen_sweep_of_ss_inst(b_values, n_values)
 
@@ -176,13 +185,10 @@ if __name__ == "__main__":
     if args.p:
         print '------------------------'
         print 'Printing the density of each instance...'
-        densities = []
-        for inst in instances:
-            densities.append(inst.density)
-            pass
+        densities = [inst.density for inst in instances]
         print densities
         print 'Max density:', max(densities)
-        print 'Min density:', min(densities )
+        print 'Min density:', min(densities)
         print 'Avg density:', sum(densities) / len(densities)
     
     print '------------------'
