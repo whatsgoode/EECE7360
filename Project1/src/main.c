@@ -23,6 +23,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
 
 // Modules
 
@@ -37,6 +39,7 @@ SUBSETSUM_ALGORITHM(P1_Exhaustive);
 // ***** Local variables ******************************************************
 
 static Subset_Sum_t mtProblem;
+static uint32_t muwTimeLimit;
 
 /**************************************************************************//**
 *
@@ -81,6 +84,10 @@ int main(int argc, char **argv)
             
             return -1;
         }
+
+        // Set the time limit
+
+        muwTimeLimit = atoi(argv[2]);
         
         // Initialize the problem
         
@@ -131,8 +138,58 @@ int main(int argc, char **argv)
 ******************************************************************************/
 SUBSETSUM_ALGORITHM(P1_Exhaustive)
 {
-    
-    
+    uint32_t xuwLoop;
+    time_t xtStartTime, xtCurrTime;
+    bool xbDone = false;
+
+    // Clear all selections
+
+    for(xuwLoop = 0u; xuwLoop < zptInst->suwSize; xuwLoop++)
+    {
+        Subset_Sum_Select(zptInst, xuwLoop, EXCLUDED);
+    }
+
+    // Start the timer
+
+    xtStartTime = time(NULL);
+    xtCurrTime = 0u;
+
+    // The loop to find the subsets treats the inpur array elements
+    // as the digits in a binary number. This way, every combination
+    // is tested as it "counts"
+
+    while((Subset_Sum_GetSum(zptInst) != zptInst->suwTarget) &&
+          (xtCurrTime < muwTimeLimit) &&
+          (xbDone == false))
+    {
+          // Find next subset
+
+          for(xuwLoop = 0; xuwLoop < zptInst->suwSize; xuwLoop++)
+          {
+              if(zptInst->saucSolution[xuwLoop] == INCLUDED)
+              {
+                  zptInst->saucSolution[xuwLoop] = EXCLUDED;
+                  if (xuwLoop == (zptInst->suwSize - 1u))
+                  {
+                      xbDone = true;
+                      break;
+                  }
+              }
+              else
+              {
+                  zptInst->saucSolution[xuwLoop] = INCLUDED;
+                  break;
+              }
+          }
+
+          // Update the elapsed time
+
+          xtCurrTime = time(NULL) - xtStartTime;
+    }
+
+    // Update the total elapsed time
+
+    zptInst->suwTime = xtCurrTime;
 }
 
 // \}

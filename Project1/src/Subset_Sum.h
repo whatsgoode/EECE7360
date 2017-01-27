@@ -27,6 +27,7 @@ typedef void (*Algorithm_t)(Subset_Sum_t * zptInst);
 struct Subset_Sum_s
 {
     char sacName[32u];
+    uint32_t suwTime;
     uint32_t * sauwInputSet;
     uint8_t * saucSolution;
     uint32_t suwSize;
