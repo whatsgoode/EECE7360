@@ -1,4 +1,38 @@
 \documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx} %package to manage images
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=false,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
 \begin{document}
 \centerline{\sc \large EECE 7360 Project 1}
 \vspace{.5pc}
@@ -97,8 +131,100 @@ on cases around a density of 1.0, we argue this is representative of the instanc
 space and in line with prior work.
 
 \section{Algorithm}
+For the first attempt at solving the Subset Sum problem instances we had generated, we
+chose and exhaustive "brute force" approach. Rather than attempt to target specific
+subsets of our input set, we cycled iteratively through every possible solution.
+
+\begin{lstlisting}[language=C, caption=Iterative Exhaustive Implementation]
+SUBSETSUM_ALGORITHM(P1_Exhaustive)
+{
+    uint32_t xuwLoop;
+    time_t xtStartTime, xtCurrTime;
+    bool xbDone = false;
+
+    // Clear all selections
+
+    for(xuwLoop = 0u; xuwLoop < zptInst->suwSize; xuwLoop++)
+    {
+        Subset_Sum_Select(zptInst, xuwLoop, EXCLUDED);
+    }
+
+    // Start the timer
+
+    xtStartTime = time(NULL);
+    xtCurrTime = 0u;
+
+    // The loop to find the subsets treats the inpur array 
+    // elements as the digits in a binary number. This way,
+    // every combination is tested as it "counts"
+
+    while((Subset_Sum_GetSum(zptInst) != zptInst->suwTarget) &&
+          (xtCurrTime < muwTimeLimit) &&
+          (xbDone == false))
+    {
+          // Find next subset
+
+          for(xuwLoop = 0; xuwLoop < zptInst->suwSize; xuwLoop++)
+          {
+              if(zptInst->saucSolution[xuwLoop] == INCLUDED)
+              {
+                  zptInst->saucSolution[xuwLoop] = EXCLUDED;
+                  if (xuwLoop == (zptInst->suwSize - 1u))
+                  {
+                      xbDone = true;
+                      break;
+                  }
+              }
+              else
+              {
+                  zptInst->saucSolution[xuwLoop] = INCLUDED;
+                  break;
+              }
+          }
+
+          // Update the elapsed time
+
+          xtCurrTime = time(NULL) - xtStartTime;
+    }
+
+}
+\end{lstlisting}
+
+As one can see in the figure above, since an element in the input set can be "in" or
+"out" of the solution set, there are $2^{n}$ possible subsets. Therefore, the possible
+subsets can all be represented by an n-digit binary number. In our implementation of a 
+data representation of a subset sum instance, we represented a solution as an array with
+the same number of elements as the input set, with each entry set to "INCLUDED" or
+"EXCLUDED". This representation allowed us to emulate adding 1 to a binary number,
+starting with every entry set to EXCLUDED and ending when every entry was set to INCLUDED.
+
+Looking at the code in the preceding figure, it is easy to characterize the run time of our exhaustive algorithm.
+There is an initiation step, and the $2^{n}$ possible solutions are looped through in the worst case. 
+Additionally, generating the current sum of the solution set also requires cycling through all n of its elements. 
+This yields the expression below.
+$$O(n + n*(2^{n})) = O(2^{n})$$
+As expected, the worst cases of Subset Sum cannot be solved exhaustively in poynomial time.
+
 
 \section{Results}
+
+The results are presented in the figure below. The vertical axis represents the
+input size and the horizontal axis the word length of the elements in bits.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=12cm]{P1_res.png}
+\caption{Run time for various input size and word length combinations}
+\end{figure}
+
+As expected, the exhaustive "brute force" approach largely failed to solve
+instances where $n > 50$. This is not universally true however, as the algorithm
+did manage to solve a few large instances of the largest word size we tested. From 
+this we can conclude that word size does not have a large impact on the run time of
+the algorithm and that brute force can be viable for even some large instances.
+However speaking more generally an exhaustive approach is really only viable for
+smaller instances of subset sum, per both the complexity analysis in the preceeding
+section and the data presented in the last figure.
 
 % just to generate and see the references for now
 
@@ -107,4 +233,3 @@ space and in line with prior work.
 \bibliographystyle{plain}
 
 \end{document}
-
