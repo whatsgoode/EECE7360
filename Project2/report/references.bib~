@@ -40,31 +40,3 @@
     number  = "1",
     pages   = "229-246"
 }
-
-@BOOK {garey1979,
-    author    = "Garey, Michael, and Johnson, David",
-    title     = "Computers and Intractability: A Guide to the Theory of NP-Completeness",
-    publisher = "W. H. Freeman and Company",
-    year      = "1979"
-}
-
-@BOOK {lyubashevsky2005,
-    author    = "Lyubashevsky, Vadim",
-    title     = "Approximation, Randomization and Combinatorial Optimization. Algorithms and Techniques.",
-    publisher = "Springer Berlin Heidelberg",
-    year      = "2005"
-}
-
-@TECHREPORT {karp1972,
-    author      = "Karp, Richard",
-    title       = "Reducibility Among Combinatorial Problems",
-    institution = "University of California at Berkeley",
-    year        = "1972"
-}
-
-@ARTICLE {koiliaris2016,
-    author  = "Koiliaris, Konstantinos, and Xu, Chao",
-    title   = "A Faster Pseudopolynomial Time Algorithm for Subset Sum",
-    journal = "Proceedings of the Twenty-Eighth Annual ACM-SIAM Symposium on Discrete Algorithms",
-    year    = "2016"
-}
