@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx} %package to manage images
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=false,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+\begin{document}
+\centerline{\sc \large EECE 7360 Project 2}
+\vspace{.5pc}
+\centerline{\sc Garrett Goode and Daniel Hullihen}
+\centerline{\it Spring 2017}
+
+\section{Introduction}
+The subset sum problem (also referred to as the ``exact knapsack problem'')
+is defined below.
+
+\textit{Let A = $\{a_1, ..., a_n\}$ represent some set of integers. Given a sum s, find a subset $A' \subset A$ such that
+  $$s = \sum_{i=1}^n a_i, for 1 \le i \le n.$$}
+In other words, if we are given a list of numbers and some target sum, find the numbers in the list that
+add up to the target sum. 
+
+In this project, we explored the complexity landscape around the subset sum problem, including
+subproblems to subset sum, as well as problems of which which subset sum itself is a subproblem.
+
+\section{Natural NPC Subproblems of Subset Sum}
+
+\section{Natural NPC Problems of which Subset Sum is a Subproblem}
+
+\section{Summary}
+
+\bibliography{references}
+\bibliographystyle{plain}
+
+\end{document}
