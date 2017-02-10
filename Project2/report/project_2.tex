@@ -122,15 +122,93 @@ defined as $\sum_{a_i\epsilon B} a_i$, characterize $A^*$ as ``a small
 collection of
 arithmetic progressions.'' 
 
-\section{Natural Problems of which Subset Sum is a Subproblem}
-Partition (transformation to Subset Sum)
-Knapsack (transformation to Partition)
-3-dimensional matching (transformation to Partition)
-Multiple subset sum 
+\section{Problems of which Subset Sum is a Natural Subproblem}
+
+We were unable to identify any problems of which Subset sum is a natural subproblem.
+However rather than ignore this area of investigation entirely, we chose to explore
+similar problems that are close neighbors via transformation in the landscape of common
+NP-complete problems.
+
+\subsection{Satisfiability} 
+
+While Satisfiability (SAT) is a few transformations away from Subset Sum on the 
+complexity landscape we have presented, establishing this link between subset sum and SAT is
+crucial as almost all NP completeness proofs are derived from Cook's original proof for SAT and
+some transformations. The problem is defined below.
+
+\textit{Given a set of U variables, collection of C clauses over U, is there a satisfying truth assignment for C?}
+
+As proven by Cook in the aforementioned paper, SAT is NP-complete.
+
+\subsection{3-Satisfiability}
+
+Transformed from SAT, 3-Satisfiability (3SAT) is a special case of SAT where each logical 
+clause can have only exactly three variables. The problem is formally defined as follows.
+
+\textit{Given a set of U variables, collection of C clauses over U such that $|c| = 3$, is there a satisfying truth assignment for C?}
+
+Despite this restriction on the domain of problem instances when compared to SAT, 
+3SAT remains NP-complete.
+
+\subsection{3-Dimensional Matching} 
+
+Transformed from 3SAT, the 3-dimensional matching problem deals with finding a matching in 
+a three-dimensional graph. The formal definition is given below.
+
+\textit{Given a set $M \subset WxXxY$, where W, X, and Y are disjoint sets with the same number of elements q, does M contain a matching $M' \subset M$ such that $|M'|= q$ and no two elements are the same?}
+
+Like the previous problems discussed in this section, 3DM remaings NP-complete in all but a few ideal scenarios.
+Interestingly enough, 2-Dimensional Matching (2DM) which is not discussed at length in this seciton, is tractable.
+
+\subsection{Partition} 
+
+The Partition problem is defined below.
+
+\textit{Let A = $\{a_1, ..., a_n\}$ represent some set of positive integers. Does there exist a subset $A' \subset A$ such that
+  $$\sum_{a \epsilon A'} s(a) = \sum_{a \epsilon A - A'} s(a)?$$}
+In other words, is there a subset of the given set with sum equal to the sum of the members of the original set not included in the subset?
+
+Once again, the partition problem is known to be NP-Complete. Of all of the problems discussed in this section,
+the partition problem is likely the closest to the Subset Sum problem. However it is not a natural subproblem of Subset Sum
+as no target is given as input. Instead, the target is implied as the half of the sum of the input set.
+
+One can see clearly how simple a transformation from an instance of Partition to and instance of Subset Sum would be however, simply
+by summing the input set and setting the target total to half of the calculated sum.
+
+\subsection{Knapsack}
+
+The Knapsack problem is also a transformation from the Partition problem (like Subset Sum). As one might expect, the problems are
+therefore very similar in nature. The Knapsack problem is defined as follows.
+
+\textit{Given a finite set U, with each $u \epsilon U$ having an associated size s(u) and value v(u), is there a subset $U' \subset U$ such that the sum of the s(u') for all $u' \epsilon U'$ is less than a given integer K while the sum of v(u') for all  $u' \epsilon U'$ is greater than a given integer H?}
+
+Like all of the other problems in this section, knapsack is NP-complete. There are variations of the the Knapsack problem that are
+tractable, but they are not discussed in this paper as they are less related to the Subset Sum problem in question. Subset Sum itself
+is sometimes refered to as the exact knapsack problem.
 
 \section{Summary}
+
+The chart in Figure 1 on the following page maps out all problems discussed in the preceding sections. Note that all subproblems are tractable, while all problems related by
+transformation are believed to be intractable.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=12cm]{comp_chart.png}
+\caption{Complexity landscape for Subset Sum}
+\end{figure}
+
+\section{Conclusion}
+
+Overall the investigation into the subproblems and closely related NPC problems was very helpful in getting a clearer vision of
+the nature of the Subset Sum problem we will continue to investigate. We had some difficulty identifying any problems that
+subset sum was a natural subproblem of, but in the end that seemed to be apporpriate as the subset sum problem itself is very general.
+It is quite simple to see how when bounds and restrictions are introduced to the origional subset sum problem statement we arrive at
+various other important or interesting subproblems, but it is difficult to relax the input domain of a problem that is already so
+broad and nonspecific in nature. All in all we are eager to apply the infomation we discovered in this investigation to aid in our
+understanding of future solution methods for the Subset Sum problem.
 
 \bibliography{references}
 \bibliographystyle{plain}
 
 \end{document}
+
