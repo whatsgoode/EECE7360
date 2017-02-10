@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{amssymb}
 
 \usepackage{listings}
 \usepackage{color}
@@ -48,15 +49,78 @@ is defined below.
 In other words, if we are given a list of numbers and some target sum, find the numbers in the list that
 add up to the target sum. 
 
-In this project, we explored the complexity landscape around the subset sum problem, including
-subproblems to subset sum, as well as problems of which which subset sum is itself a subproblem.
+In this project, we explored the complexity landscape around the subset sum
+problem, including subproblems to subset sum, as well as problems of which
+which subset sum is itself a subproblem.
 
 \section{Natural Subproblems of Subset Sum}
-Subset sums when all numbers are coprime to m
-Input is a subset of Z_m
-Reconstruction problem
-High vs. low-density subset sum (borrow from project 1 literature)
-Case where m > c(l log l)^(1/2) (chaimovich1989)
+The subset sum problem can be solved in pseudo-polynomial time, which means
+there are subproblems to subset sum that can be solved in polynomial time,
+but the ``hardest'' subproblem in subset sum is nevertheless NP-Complete. Due
+to this property, it is possible to detect some subproblems to subset
+sum and apply a known algorithm that solves the problem in polynomial time.
+Some algorithms used for solving subset sum use a divide-and-conquer
+approach and identify these subproblems. Subproblems
+to subset sum, for example, can have all numbers that have some special
+property, or the set of numbers itself has some property that can be
+exploited.
+This section explores some of the natural subproblems to subset sum. 
+
+\subsection{Sets with a low density}
+One metric for describing an instance of subset sum is
+the density of the set. The following equation
+describes the density of a set.
+$$d = n / log_2 max(a_i)$$
+where n is the size of the set in quation and $max(a_i)$ is the largest
+element in the set.
+Lagarias and Odlyzko found that, for sets that have a density less than 0.645,
+their ``Algorithm SV'' can solve the instance in polynomial
+time \cite{lagarias1985}. One of the steps in their algorithm involves
+taking set and perform a transformation in order to apply an
+algorithm developed by Lenstra, Lenstra, and Lovasz, which has a time
+complexity of $O(n^{12}+n^9(log|f|^3))$ \cite{lenstra1982}. The transformed
+problem is one where a short vector e must be found within an integer lattice
+L = L(a,M)
+
+\subsection{Sets where all the numbers are coprime to m}
+This approach (as well as the prior approach) focus on sets that are finite
+cyclic groups, defined as $\mathbb{Z}_m = {0, 1, ..., m-1}$ of order m.
+Koiliaris and Xu argue that, given a set $S \subseteq U(\mathbb{Z})_m$, which
+describes a set of integers that are coprime to some integer m, finding
+the set of all subset sums can be donyge with a time complexity of
+$O(min(\sqrt{n}m,m^{5/4})log m log n)$ \cite{koiliaris2016}.
+Note that an integer x is
+coprime to m if the greatest common denomintor of the two values is 1.
+As Koiliaris explains, the method behind the speed-up with this approach
+is the ability to partition the set into different subsets such that ``every
+such subset is contained in an arithmetic progression of the form
+x, 2x, ..., lx''. With this, one can calculate the subset sums very quickly
+by scaling l accordingly. These sums can then be added together. This is
+only doable if m is a prime number, or if all the numbers are relative prime
+to m.
+
+\subsection{Set is a subset of $Z_m$}
+Koiliaris and Xu are able to take the previous case and take it a step further,
+developing an algorithm that finds all of the subsets of a set S in with a
+time complexity of $O(min(\sqrt{n}m,m^{5/4})log^2m)$  \cite{koiliaris2016}.
+This is for sets $S \subseteq \mathbb{Z}_m$, which is slightly different from
+the previous case in that the elements of the set no longer have to be
+coprime to some integer m.
+Their algorithm involves recursively computing a partial subset sum
+as they work across subsets of the original set.
+
+\subsection{Set size $m \geq l^{1/\alpha}$ and elements are distinct}
+Chaimovich, Freiman and Galil found that, if they took the subset sum
+problem and restricted it such that $max{a_i | a \epsilon A} \leq l \leq
+m^\alpha)$ (where l is some bound and m is the number of variables in the set),
+then the instance could be solved with a time complexity of $O(lm^2)$
+\cite{chaimovich1989}. One unique
+feature of their algorithm is that supports large sets (previous algorithms
+could only handle moderately large sets). The main approach in their algorithm
+is, assuming $A^*$ is defined as ${S_b | B \subseteq A}$, and $S_b$ is
+defined as $\sum_{a_i\epsilon B} a_i$, characterize $A^*$ as ``a small
+collection of
+arithmetic progressions.'' 
 
 \section{Natural Problems of which Subset Sum is a Subproblem}
 Partition (transformation to Subset Sum)
