@@ -158,7 +158,7 @@ SUBSETSUM_ALGORITHM(P1_Exhaustive)
     // as the digits in a binary number. This way, every combination
     // is tested as it "counts"
 
-    while((Subset_Sum_GetSum(zptInst) != zptInst->suwTarget) &&
+    while((Subset_Sum_GetSum(zptInst) != zptInst->sulTarget) &&
           (xtCurrTime < muwTimeLimit) &&
           (xbDone == false))
     {
