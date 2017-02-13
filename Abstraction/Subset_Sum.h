@@ -20,22 +20,33 @@
 //! The Subset_Sum_t struct contains all valid problem info. I might eventually
 //! make this private as origionally intended but for now this is easier.
 
-typedef struct Subset_Sum_s
+typedef struct Subset_Sum_s Subset_Sum_t;
+
+typedef void (*Algorithm_t)(Subset_Sum_t * zptInst);
+
+struct Subset_Sum_s
 {
+    char sacName[32u];
+    uint32_t suwTime;
     uint32_t * sauwInputSet;
-    uint32_t * sauwSolution;
+    uint8_t * saucSolution;
     uint32_t suwSize;
-    uint32_t suwTarget;
-    Algorithm_t spfSolver;
-    
-}   Subset_Sum_t
+    uint64_t sulTarget;
+    Algorithm_t spfSolver; 
+};
 
 //! The solver function and macro are used to easily create and provide
 //! solution functions to the solver.
 
-typedef void (*Algorithm_t)(Subset_Sum_t * zptInst);
-
 #define SUBSETSUM_ALGORITHM(Func)     void (Func) (Subset_Sum_t * zptInst)
+
+// Enum for storing state of input set elements in the solution
+
+enum
+{
+    EXCLUDED,
+    INCLUDED
+};
 
 // ***** Function prototypes **************************************************
 
@@ -46,10 +57,13 @@ void Subset_Sum_Initialize (Subset_Sum_t * zptHandle, char * zpsFilePath);
 // Control functions
 
 void Subset_Sum_Solve (Subset_Sum_t * zptHandle);
+uint32_t Subset_Sum_GetSum (Subset_Sum_t * zptHandle);
 
 // Input functions
 
 void Subset_Sum_SetSolver (Subset_Sum_t * zptHandle, Algorithm_t ztSolver);
+void Subset_Sum_Select (Subset_Sum_t * zptHandle, 
+                                    uint32_t zpuwIndex, uint8_t zeState);
 
 // Print Functions
 
@@ -60,4 +74,5 @@ void Subset_SumWriteData (Subset_Sum_t * zptHandle, char * zpnFile);
 
 void Subset_Sum_Free (Subset_Sum_t * zptHandle);
 
-#endif _SUBSUM_H
+#endif // !defined _SUBSUM_H
+

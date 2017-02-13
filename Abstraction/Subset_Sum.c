@@ -34,9 +34,14 @@
 
 #include "Subset_Sum.h"
 
+// ***** Definitions **********************************************************
+
+// ***** Local Functions ******************************************************
+
 static void SS__Parse_Info (Subset_Sum_t * zptInst, char * zpnInfo);
 static void SS__Parse_Entry (Subset_Sum_t * zptInst, 
-                                    uint32_t zuwIndex, char * zpnLine);
+                                      uint32_t zuwIndex, char * zpnLine);
+static void SS__Write (Subset_Sum_t * zptHandle, int ziFd);
 
 /**************************************************************************//**
 *
@@ -64,12 +69,19 @@ static void SS__Parse_Entry (Subset_Sum_t * zptInst,
 *
 ******************************************************************************/
 
-void Subset_Sum_Initialize (Subset_Sum_t zptHandle, char * zpsFilePath);
+void Subset_Sum_Initialize (Subset_Sum_t * zptHandle, char * zpsFilePath)
 {
     char xaacInputFile[256u][64u];
     char xcRead;
     uint32_t xuwSize = 0;
     uint8_t xucLineIndex = 0;
+
+    // Pull the name of the instance
+
+    sscanf(zpsFilePath, "../../instances/%s.dat", zptHandle->sacName);
+    while(zptHandle->sacName[++xucLineIndex] != '.'){};
+    zptHandle->sacName[xucLineIndex] = '\0';
+    xucLineIndex = 0;
 
     // Open the maps file
 
@@ -80,6 +92,7 @@ void Subset_Sum_Initialize (Subset_Sum_t zptHandle, char * zpsFilePath);
     while(read(xiFD, &xcRead, 1u) != 0u)
     {
         xaacInputFile[xuwSize][xucLineIndex++] = xcRead;
+
         if(xcRead == '\n')
         {
             xaacInputFile[xuwSize++][xucLineIndex] = '\0';
@@ -87,15 +100,21 @@ void Subset_Sum_Initialize (Subset_Sum_t zptHandle, char * zpsFilePath);
         }
     }
 
-    // Read the problem info
+    // Add last null on final string
     
-    SS__Parse_Info(zptHandle, &xaacInputFile[0u]);
+    xaacInputFile[xuwSize][xucLineIndex] = '\0';
+
+    // Read the problem info
+
+    SS__Parse_Info(zptHandle, &(xaacInputFile[0u][0u]));
     
     // Now that the instance size is known, allocate space for the input
     // set
     
     zptHandle->sauwInputSet = 
-            (uint32_t *)malloc(zptInst->suwSize * sizeof(uint32_t));
+            (uint32_t *)malloc(zptHandle->suwSize * sizeof(uint32_t));
+
+    zptHandle->saucSolution = (uint8_t *)calloc(zptHandle->suwSize, 1u);
     
     // Read the set members one at a time
 
@@ -103,7 +122,7 @@ void Subset_Sum_Initialize (Subset_Sum_t zptHandle, char * zpsFilePath);
     {
         
                 SS__Parse_Entry(zptHandle, 
-                    (xucLineIndex - 1u), &xaacInputFile[xucLineIndex]);
+                    (xucLineIndex - 1u), &(xaacInputFile[xucLineIndex][0u]));
     }
 
     // Close the file
@@ -141,11 +160,44 @@ void Subset_Sum_Solve (Subset_Sum_t * zptHandle)
     (zptHandle->spfSolver)(zptHandle);
 }
 
+/**************************************************************************//**
+*
+* \anchor      Subset_Sum_GetSum
+*
+* \brief       Get the current sum of the solution
+*
+* \details     Returns the current sum of the selected items
+*
+* \param[in]   zptHandle            Problem instance
+*
+* \retval      uint32_t
+*
+******************************************************************************/
+
+uint32_t Subset_Sum_GetSum (Subset_Sum_t * zptHandle)
+{
+    uint32_t xuwSum = 0u;
+    uint32_t xuwLoop;
+
+    // Sum enabled elements
+    
+    for (xuwLoop = 0u; xuwLoop < zptHandle->suwSize; xuwLoop++)
+    {
+
+        if(zptHandle->saucSolution[xuwLoop] == INCLUDED)
+        {
+            xuwSum += zptHandle->sauwInputSet[xuwLoop];
+        }
+    }
+
+    return xuwSum;
+}
+
 // \}
 
 /**************************************************************************//**
 *
-* \defgroup    Subset_Sum Control       Control Functions
+* \defgroup    Subset_Sum Input          Input Functions
 *
 * \{
 *
@@ -170,6 +222,28 @@ void Subset_Sum_SetSolver (Subset_Sum_t * zptHandle, Algorithm_t ztSolver)
     // Set the solver function
     
     zptHandle->spfSolver = ztSolver;
+}
+
+/**************************************************************************//**
+*
+* \anchor      Subset_Sum_Select
+*
+* \brief       Add the given element to the solution
+*
+* \details     Sets the inlude state of the given element.
+*
+* \param[in]   zptHandle            Problem instance
+* \param[in]   zpuwIndex            Item to set
+* \param[in]   zeState              State to set
+*
+* \retval      void
+*
+******************************************************************************/
+
+void Subset_Sum_Select (Subset_Sum_t * zptHandle, 
+                                    uint32_t zpuwIndex, uint8_t zeState)
+{
+    zptHandle->saucSolution[zpuwIndex] = zeState;
 }
 
 // \}
@@ -198,8 +272,9 @@ void Subset_Sum_SetSolver (Subset_Sum_t * zptHandle, Algorithm_t ztSolver)
 
 void Subset_SumDisplayData (Subset_Sum_t * zptHandle)
 {
-    
-    
+    // Call generic with file pointer to STDOUT
+
+    SS__Write(zptHandle, STDOUT_FILENO);
 }
 
 /**************************************************************************//**
@@ -219,8 +294,20 @@ void Subset_SumDisplayData (Subset_Sum_t * zptHandle)
 
 void Subset_SumWriteData (Subset_Sum_t * zptHandle, char * zpnFile)
 {
-    
-    
+    char xacFileName[128u];
+
+    // Create file
+
+    sprintf(xacFileName, "../outputs/%s.out", zptHandle->sacName);
+    int xtFile = open(xacFileName, O_RDWR | O_CREAT | O_APPEND, 0777);
+
+    // Call generic write
+
+    SS__Write(zptHandle, xtFile);
+
+    // Close the file
+
+    close(xtFile);
 }
 
 // \}
@@ -251,8 +338,8 @@ void Subset_Sum_Free (Subset_Sum_t * zptHandle)
 {
     // Free allocated memory
     
-    free(zptInst->sauwInputSet);
-    free(zptInst->sauwSolution);
+    free(zptHandle->sauwInputSet);
+    free(zptHandle->saucSolution);
 }
 
 // \}
@@ -284,8 +371,8 @@ static void SS__Parse_Info (Subset_Sum_t * zptInst, char * zpnInfo)
 {
     // The format of the first line is [size] [target]\r\n so simply
     // scan the two expected values into the structure.
-    
-    sscanf(zpnInfo, "%d %d\r\n", zptInst->suwSize, zptInst->suwSize);
+
+    sscanf(zpnInfo, "%d %ull\r\n", &zptInst->suwSize, &zptInst->sulTarget);
 }
 
 /**************************************************************************//**
@@ -310,7 +397,11 @@ static void SS__Parse_Entry (Subset_Sum_t * zptInst,
     // The format of the first line is [item]\r\n so simply
     // scan the expected values into the structure.
     
-    sscanf(zpnInfo, "%d\r\n", (zptInst->sauwInputSet)[zuwIndex]);
+    uint32_t xuwtemp;
+
+    sscanf(zpnLine, "%u\r\n", &xuwtemp);
+
+    (zptInst->sauwInputSet)[zuwIndex] = xuwtemp;
 }
 /**************************************************************************//**
 *
@@ -328,10 +419,44 @@ static void SS__Parse_Entry (Subset_Sum_t * zptInst,
 *
 ******************************************************************************/
 
-void SS__Write (Subset_Sum_t * zptHandle, int ziFd)
+static void SS__Write (Subset_Sum_t * zptHandle, int ziFd)
 {
-    
-    
+    char xaucBuffer[80u];
+    uint32_t xuwLoop;
+
+    // File header
+
+    sprintf(xaucBuffer, "Input: %s\n", zptHandle->sacName);
+    write(ziFd, xaucBuffer, strlen(xaucBuffer));
+
+    sprintf(xaucBuffer, "Target: %ull\n", zptHandle->sulTarget);
+    write(ziFd, xaucBuffer, strlen(xaucBuffer));
+
+    sprintf(xaucBuffer, "Size: %d\n", zptHandle->suwSize);
+    write(ziFd, xaucBuffer, strlen(xaucBuffer));
+
+    if (Subset_Sum_GetSum(zptHandle) != zptHandle->sulTarget)
+    {
+        sprintf(xaucBuffer, "Solved: NO, %ull\n", Subset_Sum_GetSum(zptHandle));
+        write(ziFd, xaucBuffer, strlen(xaucBuffer));
+    }
+    else
+    {
+        sprintf(xaucBuffer, "Solved: YES, %d seconds\n", zptHandle->suwTime);
+        write(ziFd, xaucBuffer, strlen(xaucBuffer));
+
+        sprintf(xaucBuffer, "Solution:\n");
+        write(ziFd, xaucBuffer, strlen(xaucBuffer));
+
+        for(xuwLoop = 0u; xuwLoop < zptHandle->suwSize; xuwLoop++)
+        {
+            if(zptHandle->saucSolution[xuwLoop] == INCLUDED)
+            {
+                sprintf(xaucBuffer, "%d\n", zptHandle->sauwInputSet[xuwLoop]);
+                write(ziFd, xaucBuffer, strlen(xaucBuffer));
+            }
+        }
+    }
 }
 
 // \}
