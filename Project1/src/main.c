@@ -101,7 +101,7 @@ int main(int argc, char **argv)
         // Write outfile
 
         Subset_SumDisplayData(&mtProblem);
-        Subset_SumWriteData(&mtProblem, "test");
+        Subset_SumWriteData(&mtProblem);
         
         // Cleanup
         
