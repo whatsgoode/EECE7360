@@ -2,9 +2,9 @@
 *
 * \file        main.c
 *
-* \defgroup    main                 Main file for Project 2
+* \defgroup    main                 Main file for Project 3
 *
-* \details     This is the main file for project two. It is called along with
+* \details     This is the main file for project three. It is called along with
 *              a filename and a time limit for solving the given instance. It
 *              terminates when the solution is found or time expires.
 *
@@ -34,7 +34,7 @@
 
 //! The solver is defined using the macro provided by the Subset Sum module
 
-SUBSETSUM_ALGORITHM(P2_Greedy);
+SUBSETSUM_ALGORITHM(P3_Greedy);
 
 // ***** Local variables ******************************************************
 
@@ -52,7 +52,7 @@ static Subset_Sum_t mtProblem;
 *
 * \anchor      main
 *
-* \brief       Main function for Project 2
+* \brief       Main function for Project 3
 *
 * \details     Creates a subset sum instance from the provided file and uses
 *              the locally defined greedy search to solve it.
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
         if (argc != 2)
         {
             printf("Invalid arguments! \n");
-            printf("Usage: P1 [input file name]\n");
+            printf("Usage: P3 [input file name]\n");
             
             return -1;
         }
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
         // Initialize the problem
         
         Subset_Sum_Initialize(&mtProblem, argv[1]);
-        Subset_Sum_SetSolver(&mtProblem, P2_Greedy);
+        Subset_Sum_SetSolver(&mtProblem, P3_Greedy);
         
         // Solve the problem
         
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
         // Write outfile
 
         Subset_SumDisplayData(&mtProblem);
-        Subset_SumWriteData(&mtProblem, "test");
+        Subset_SumWriteData(&mtProblem);
         
         // Cleanup
         
@@ -116,7 +116,7 @@ int main(int argc, char **argv)
 
 /**************************************************************************//**
 *
-* \anchor      P2_Greedy
+* \anchor      P3_Greedy
 *
 * \brief       Greedy Algorithm for solving a subset sum instance.
 *
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
 * \retval      void
 *
 ******************************************************************************/
-SUBSETSUM_ALGORITHM(P2_Greedy)
+SUBSETSUM_ALGORITHM(P3_Greedy)
 {
     uint32_t xuwLoop;
     uint64_t xulTempSum = 0u;

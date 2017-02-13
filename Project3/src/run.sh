@@ -2,5 +2,5 @@
 
 for file in ../../instances/*
 do
-	./p2 "$file"
+	./p3 "$file"
 done 
