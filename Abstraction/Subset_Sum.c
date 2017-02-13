@@ -292,7 +292,7 @@ void Subset_SumDisplayData (Subset_Sum_t * zptHandle)
 *
 ******************************************************************************/
 
-void Subset_SumWriteData (Subset_Sum_t * zptHandle, char * zpnFile)
+void Subset_SumWriteData (Subset_Sum_t * zptHandle)
 {
     char xacFileName[128u];
 
