@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{listings}
+\usepackage{algorithm}
 \usepackage{color}
 \usepackage{graphicx} %package to manage images
 
@@ -51,12 +52,16 @@ problem, the question would be ``Is there a subset A' of A where the sum of the
 elements of A' is s?''
 
 In this project, we developed an implementation of a greedy algorithm
-for the subset sum problem, and ran them against a suite of instances to evaluate
+for the subset sum problem, and ran it against a suite of instances to evaluate
 the performance of this algorithm.
 
 \section{Greedy Algorithm Implementation}
 The implementation of the greedy algorithm that was used for this project is relatively simple.
-(add pseudo-code)
+
+\begin{algorithm}
+  \caption{Greedy Algorithm to Solve Subset Sum}
+  \for{element in set}
+\end{algorithm}
 
 One characteristic of a greedy algorithm is that, once we decide to include an element
 to the sum, we never undo the decision. In the case of the subset sum problem, this
@@ -84,13 +89,10 @@ has failed to find a solution depite the fact one actually exists.
 The results are presented in the figure below. The vertical axis represents the
 input size and the horizontal axis the word length of the elements in bits.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=12cm]{P3_res.png}
-\caption{Run time for various input size and word length combinations}
-\end{figure}
-
-\bibliography{references}
-\bibliographystyle{plain}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=12cm]{P3_res.png}
+%\caption{Run time for various input size and word length combinations}
+%\end{figure}
 
 \end{document}
