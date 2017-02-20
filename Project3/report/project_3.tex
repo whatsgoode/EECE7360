@@ -55,8 +55,29 @@ for the subset sum problem, and ran them against a suite of instances to evaluat
 the performance of this algorithm.
 
 \section{Greedy Algorithm Implementation}
+The implementation of the greedy algorithm that was used for this project is relatively simple.
+(add pseudo-code)
+
+One characteristic of a greedy algorithm is that, once we decide to include an element
+to the sum, we never undo the decision. In the case of the subset sum problem, this
+can easily cause the algorithm to not find the correct list of elements to use for the sum
+since not all combinations of integers in a list are necessarily going to add up to
+the target sum. Because of this, a margin of error is introduced where the algorithm
+may fall short of the target sum. The upside of this algorithm is the time complexity
+improvement: the algorithm visits each element of the set only once, giving the
+algorithm a tightly bound time complxity of O(n).
 
 \section{Trivial Case where the Greedy Algoithm Fails}
+Due to the nature of the greedy algorithm explained in the previous section,
+we can identify a trivial case where the algorithm will fail. Take for example
+the set of integers S below where the target sum is 150.
+$$S = {49, 100, 50}$$
+The greedy algorithm will start from the first element and work its way through
+the list, adding numbers so long as the running sum does not go beyond the target sum of 150.
+In this case, the algorithm will accept the integers 49 and 100, resulting in a sum of 149.
+When it encounters 50, it decides not to add this number since it would bring the running
+sum over the target sum. The algorithm has then completed processing the set, but it
+has failed to find a solution depite the fact one actually exists.
 
 \section{Results}
 
