@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx} %package to manage images
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=false,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+\begin{document}
+\centerline{\sc \large EECE 7360 Project 3}
+\vspace{.5pc}
+\centerline{\sc Garrett Goode and Daniel Hullihen}
+\centerline{\it Spring 2017}
+
+\section{Introduction}
+The subset sum problem (also referred to as the ``exact knapsack problem'')
+is defined below.
+
+\textit{Let A = $\{a_1, ..., a_n\}$ represent some set of integers. Given a sum s, find a subset $A' \subset A$ such that
+  $$s = \sum_{i=1}^n a_i, for 1 \le i \le n.$$}
+In other words, if we are given a list of numbers and some target sum, we want
+to find the numbers in the list that would add up to the target sum. Put as a decision
+problem, the question would be ``Is there a subset A' of A where the sum of the
+elements of A' is s?''
+
+In this project, we developed an implementation of a greedy algorithm
+for the subset sum problem, and ran them against a suite of instances to evaluate
+the performance of this algorithm.
+
+\section{Greedy Algorithm Implementation}
+
+\section{Trivial Case where the Greedy Algoithm Fails}
+
+\section{Results}
+
+The results are presented in the figure below. The vertical axis represents the
+input size and the horizontal axis the word length of the elements in bits.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=12cm]{P3_res.png}
+\caption{Run time for various input size and word length combinations}
+\end{figure}
+
+\bibliography{references}
+\bibliographystyle{plain}
+
+\end{document}
