@@ -21,10 +21,13 @@
 
 // ***** Header files *********************************************************
 
+#define _GNU_SOURCE
+
 // C Standard
 
 #include <stdio.h>
 #include <unistd.h>
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
@@ -78,7 +81,11 @@ void Subset_Sum_Initialize (Subset_Sum_t * zptHandle, char * zpsFilePath)
 
     // Pull the name of the instance
 
-    sscanf(zpsFilePath, "../../instances/%s.dat", zptHandle->sacName);
+    // Make sure the file exists in the first place
+    // Extract base name of file
+    assert(access(zpsFilePath, F_OK) != 1);
+    char *baseName = basename(zpsFilePath);
+    sscanf(baseName, "%s.dat", zptHandle->sacName);
     while(zptHandle->sacName[++xucLineIndex] != '.'){};
     zptHandle->sacName[xucLineIndex] = '\0';
     xucLineIndex = 0;
