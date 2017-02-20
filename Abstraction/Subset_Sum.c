@@ -450,7 +450,8 @@ static void SS__Write (Subset_Sum_t * zptHandle, int ziFd)
     }
     else
     {
-        sprintf(xaucBuffer, "Solved: YES, %d seconds\n", zptHandle->suwTime);
+      sprintf(xaucBuffer, "Solved: YES, %d seconds, %ull, %.10f\n", zptHandle->suwTime, Subset_Sum_GetSum(zptHandle),
+	      Subset_Sum_GetSum(zptHandle) / (float)zptHandle->sulTarget);
         write(ziFd, xaucBuffer, strlen(xaucBuffer));
 
         sprintf(xaucBuffer, "Solution:\n");
