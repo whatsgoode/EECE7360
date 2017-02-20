@@ -3,6 +3,7 @@
 
 \usepackage{listings}
 \usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{color}
 \usepackage{graphicx} %package to manage images
 
@@ -57,11 +58,33 @@ the performance of this algorithm.
 
 \section{Greedy Algorithm Implementation}
 The implementation of the greedy algorithm that was used for this project is relatively simple.
+Below is the psuedocode for the algorithm.
 
 \begin{algorithm}
   \caption{Greedy Algorithm to Solve Subset Sum}
-  \for{element in set}
+  \label{greedy}
+  \begin{algorithmic}
+    \STATE{$runningSum \gets 0$}
+    \STATE{$subset \gets []$} \COMMENT{Initialize subset to an empty list}
+    \FOR{integer i in set S}
+    \IF{$runningSum + i \le targetSum$}
+    \STATE{$runningSum \gets runningSum + i$}
+    \STATE{append i to subset}
+    \ENDIF
+    \ENDFOR
+    \IF{$runningSum == targetSum$}
+    \STATE{return subset}
+    \ELSE
+    \STATE{return NULL}
+    \ENDIF
+  \end{algorithmic}
 \end{algorithm}
+
+We walk through each element of the provided instance, adding numbers so long
+as the running sum has not exceeded the target sum. At the end, we check to see
+if the running sum matches the target sum; if it does, we have successfully solved
+the instance and return the subset of integers. Otherwise we have not solved the instance
+and return NULL.
 
 One characteristic of a greedy algorithm is that, once we decide to include an element
 to the sum, we never undo the decision. In the case of the subset sum problem, this
@@ -70,13 +93,15 @@ since not all combinations of integers in a list are necessarily going to add up
 the target sum. Because of this, a margin of error is introduced where the algorithm
 may fall short of the target sum. The upside of this algorithm is the time complexity
 improvement: the algorithm visits each element of the set only once, giving the
-algorithm a tightly bound time complxity of O(n).
+algorithm a tightly bound time complxity of O(n). This algorithm may be useful for
+applications that only need a subset that is within some percent of the target sum,
+especially given the improved time complexity over the brute-force solution.
 
-\section{Trivial Case where the Greedy Algoithm Fails}
+\section{Trivial Case Where the Greedy Algorithm Fails}
 Due to the nature of the greedy algorithm explained in the previous section,
 we can identify a trivial case where the algorithm will fail. Take for example
 the set of integers S below where the target sum is 150.
-$$S = {49, 100, 50}$$
+$$S = \{49, 100, 50\}$$
 The greedy algorithm will start from the first element and work its way through
 the list, adding numbers so long as the running sum does not go beyond the target sum of 150.
 In this case, the algorithm will accept the integers 49 and 100, resulting in a sum of 149.
