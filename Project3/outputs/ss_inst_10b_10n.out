@@ -2,3 +2,7 @@ Input: ss_inst_10b_10n
 Target: 2688ll
 Size: 10
 Solved: NO, 2671ll
+Input: ss_inst_10b_10n
+Target: 2688ll
+Size: 10
+Solved: NO, 0 seconds, 2671ll, 0.9936755896

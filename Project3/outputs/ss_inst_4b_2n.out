@@ -2,3 +2,7 @@ Input: ss_inst_4b_2n
 Target: 12ll
 Size: 2
 Solved: NO, 2ll
+Input: ss_inst_4b_2n
+Target: 12ll
+Size: 2
+Solved: NO, 0 seconds, 2ll, 0.1666666716

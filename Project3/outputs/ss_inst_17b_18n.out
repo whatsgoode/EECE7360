@@ -2,3 +2,7 @@ Input: ss_inst_17b_18n
 Target: 714570ll
 Size: 18
 Solved: NO, 709101ll
+Input: ss_inst_17b_18n
+Target: 714570ll
+Size: 18
+Solved: NO, 0 seconds, 709101ll, 0.9923464656

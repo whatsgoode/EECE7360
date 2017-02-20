@@ -2,3 +2,7 @@ Input: ss_inst_24b_6n
 Target: 30135267ll
 Size: 6
 Solved: NO, 26971700ll
+Input: ss_inst_24b_6n
+Target: 30135267ll
+Size: 6
+Solved: NO, 0 seconds, 26971700ll, 0.8950210810

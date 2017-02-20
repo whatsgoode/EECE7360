@@ -9,3 +9,14 @@ Solution:
 2
 4
 2
+Input: ss_inst_4b_10n
+Target: 42ll
+Size: 10
+Solved: YES, 0 seconds
+Solution:
+14
+11
+9
+2
+4
+2

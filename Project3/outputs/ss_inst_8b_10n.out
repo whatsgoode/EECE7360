@@ -2,3 +2,7 @@ Input: ss_inst_8b_10n
 Target: 862ll
 Size: 10
 Solved: NO, 855ll
+Input: ss_inst_8b_10n
+Target: 862ll
+Size: 10
+Solved: NO, 0 seconds, 855ll, 0.9918793440

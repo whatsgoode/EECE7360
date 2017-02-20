@@ -2,3 +2,7 @@ Input: ss_inst_21b_16n
 Target: 8367826ll
 Size: 16
 Solved: NO, 8244523ll
+Input: ss_inst_21b_16n
+Target: 8367826ll
+Size: 16
+Solved: NO, 0 seconds, 8244523ll, 0.9852646589

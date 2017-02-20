@@ -2,3 +2,7 @@ Input: ss_inst_15b_80n
 Target: 757993ll
 Size: 80
 Solved: NO, 756598ll
+Input: ss_inst_15b_80n
+Target: 757993ll
+Size: 80
+Solved: NO, 0 seconds, 756598ll, 0.9981595874

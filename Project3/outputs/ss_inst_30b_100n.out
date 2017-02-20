@@ -2,3 +2,7 @@ Input: ss_inst_30b_100n
 Target: 3076412885ll
 Size: 100
 Solved: NO, 3014072826ll
+Input: ss_inst_30b_100n
+Target: 3076412885ll
+Size: 100
+Solved: NO, 0 seconds, 3014072826ll, 0.9797360897

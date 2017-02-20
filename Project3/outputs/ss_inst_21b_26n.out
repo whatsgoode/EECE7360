@@ -2,3 +2,23 @@ Input: ss_inst_21b_26n
 Target: 16473237ll
 Size: 26
 Solved: NO, 16376679ll
+Input: ss_inst_21b_26n
+Target: 16473237ll
+Size: 26
+Solved: NO, 0 seconds, 16376679ll, 0.00
+Input: ss_inst_21b_26n
+Target: 16473237ll
+Size: 26
+Solved: NO, 0 seconds, 16376679ll, 0.99
+Input: ss_inst_21b_26n
+Target: 16473237ll
+Size: 26
+Solved: NO, 0 seconds, 16376679ll, 0.99414
+Input: ss_inst_21b_26n
+Target: 16473237ll
+Size: 26
+Solved: NO, 0 seconds, 16376679ll, 0.9941384792
+Input: ss_inst_21b_26n
+Target: 16473237ll
+Size: 26
+Solved: NO, 0 seconds, 16376679ll, 0.9941384792
