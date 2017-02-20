@@ -148,7 +148,7 @@ SUBSETSUM_ALGORITHM(P3_Greedy)
     {
         // If the instance is solved, stop
         
-        if (Subset_Sum_GetSum(zptInst) == zptInst->suwTarget)
+        if (Subset_Sum_GetSum(zptInst) == zptInst->sulTarget)
         {
             
             break;
@@ -161,7 +161,7 @@ SUBSETSUM_ALGORITHM(P3_Greedy)
             Subset_Sum_GetSum(zptInst) + zptInst->sauwInputSet[xuwLoop];
         
         zptInst->saucSolution[xuwLoop] = 
-            (xulTempSum <= zptInst->suwTarget) ? INCLUDED : EXCLUDED;
+            (xulTempSum <= zptInst->sulTarget) ? INCLUDED : EXCLUDED;
     }
 }
 
