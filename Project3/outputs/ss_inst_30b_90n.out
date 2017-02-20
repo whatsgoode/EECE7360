@@ -1,8 +1,4 @@
 Input: ss_inst_30b_90n
 Target: 2257425808ll
 Size: 90
-Solved: NO, 2245327052ll
-Input: ss_inst_30b_90n
-Target: 2257425808ll
-Size: 90
 Solved: NO, 0 seconds, 2245327052ll, 0.9946404099

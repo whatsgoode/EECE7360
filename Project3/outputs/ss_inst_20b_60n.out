@@ -1,8 +1,4 @@
 Input: ss_inst_20b_60n
 Target: 15373748ll
 Size: 60
-Solved: NO, 15320692ll
-Input: ss_inst_20b_60n
-Target: 15373748ll
-Size: 60
 Solved: NO, 0 seconds, 15320692ll, 0.9965489507

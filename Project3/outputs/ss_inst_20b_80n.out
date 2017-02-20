@@ -1,8 +1,4 @@
 Input: ss_inst_20b_80n
 Target: 23272881ll
 Size: 80
-Solved: NO, 23252378ll
-Input: ss_inst_20b_80n
-Target: 23272881ll
-Size: 80
 Solved: NO, 0 seconds, 23252378ll, 0.9991190434

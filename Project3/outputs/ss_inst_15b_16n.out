@@ -1,8 +1,4 @@
 Input: ss_inst_15b_16n
 Target: 101582ll
 Size: 16
-Solved: NO, 99419ll
-Input: ss_inst_15b_16n
-Target: 101582ll
-Size: 16
 Solved: NO, 0 seconds, 99419ll, 0.9787068367

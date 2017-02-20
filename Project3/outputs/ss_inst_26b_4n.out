@@ -1,8 +1,4 @@
 Input: ss_inst_26b_4n
 Target: 107961781ll
 Size: 4
-Solved: NO, 107791440ll
-Input: ss_inst_26b_4n
-Target: 107961781ll
-Size: 4
 Solved: NO, 0 seconds, 107791440ll, 0.9984222054

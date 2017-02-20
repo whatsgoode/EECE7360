@@ -1,8 +1,4 @@
 Input: ss_inst_6b_10n
 Target: 255ll
 Size: 10
-Solved: NO, 248ll
-Input: ss_inst_6b_10n
-Target: 255ll
-Size: 10
 Solved: NO, 0 seconds, 248ll, 0.9725490212
