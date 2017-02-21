@@ -140,4 +140,36 @@ Figure~\ref{fig:exhaustive} shows the run-times for the exhaustive algorithm.
 \label{fig:exhaustive}
 \end{figure}
 
+Looking at the results described in Figure~\ref{fig:greedy}, the greedy algorithm was successful
+when there were sufficiently few numbers in the set, as well large sets with relatively small numbers
+For example, the majority of the instances with 90+ elements but with a max bit width < 10
+passed. This may be due to the fact that, given enough sufficiently small numbers, the algorithm
+can work at a small enough granularity and have a better chance to come across a total set
+of numbers that can add up to the target. However, as the size of the max value increases,
+the margin begins to decrease; the algorithm is less likely to hit the target sum.
+
+The worst-performing instance was the one with 2 elements and a max bit width of 4. This is most likely
+due to chance. With fewer numbers, there are fewer chances to find other numbers that can add up
+to the target sum. It is also a function of the distribution of numbers in the set. If there is a large
+distribution of integers and the target sum actually needs the larger value, but the larger value is
+at the end of the set, then the algorithm is more likely to not include it, and end up with a large
+margin of error. One way to possibly correct this case is by sorting the integers from largest to
+smallest.
+
+There appears to be a significant area where the margin of error is within a few percent of the target sum,
+but the algorithm nevertheless fails. This appears to happen with medium-sized sets (i.e. sets
+with more than just a couple elements, but do not have a large number either), namely from set sizes
+of about 6 to 50. The greedy algorithm is unable to solve the majority of these instances.
+This may be due to the fact that there are enough integers where the algorithm can accidentally add one
+that will actually never allow the sum to equal the target sum. Had there been more integers, there
+would be more opportunities for the algorithm to find some other integer that could still allow
+the algorithm to achieve the target sum.
+
+In general, performance seems to come down to how many subsets actually do exist within the set that
+satisfy the target sum, which depends on factors such as the distribution of integers values in the set.
+For example, for sets with several large and small numbers that are similar to each other, there may
+be more subsets that satisfy a target sum compared to a set with a more even distribution of integers.
+Granted, this also depends on the target sum itself. But if there are many subsets that satisfy the
+target sum, then the greedy algorithm has a better chance of succeeding. 
+
 \end{document}
