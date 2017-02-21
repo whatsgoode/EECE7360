@@ -111,13 +111,33 @@ has failed to find a solution depite the fact one actually exists.
 
 \section{Results}
 
-The results are presented in the figure below. The vertical axis represents the
+The results are presented in Figure~\ref{fig:greedy} below. The vertical axis represents the
 input size and the horizontal axis the word length of the elements in bits.
 
-%\begin{figure}[h]
-%\centering
-%\includegraphics[width=12cm]{P3_res.png}
-%\caption{Run time for various input size and word length combinations}
-%\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=12cm]{P3_margin.png}
+\caption{Margin of error for various input size and word length combinations for the greedy algorithm}
+\label{fig:greedy}
+\end{figure}
+
+Each cell in the above figure is color-coded based on the margin of error
+the greedy algorithm had for the given instance. A value of 1 means the algorithm
+successfully found a subset whose sum of elements matched the target sum. 
+Varying yellow, orange and red elements are cases where the algorithm was more
+progressively off from the target sum, with red being the most off/greatest error.
+
+Of the 151 instances that were tested, the greedy algorithm was able to
+correctly solve 28 of them, yielding an 18.5\% success rate. Compared to the
+exhaustive algorithm, which had a 76\% success rate, the greedy algorithm 
+is much less successful despite it's lower time complexity. As a reminder,
+Figure~\ref{fig:exhaustive} shows the run-times for the exhaustive algorithm.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=12cm]{P1_res.png}
+\caption{Run time for various input size and word length combinations for the exhaustive algorithm}
+\label{fig:exhaustive}
+\end{figure}
 
 \end{document}

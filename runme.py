@@ -76,9 +76,12 @@ def generate_report(dir_name):
         matching_num_elems = [fname for fname in file_list if get_num_elems(fname) == elem_count]
 
         # Sort from smallest bit-width to largest
+        # BOZO_dhullih: currently not needed
         matching_num_elems = sorted(matching_num_elems, key=lambda k: get_bit_width(k))
 
         final_row = []
+        # BOZO_dhullih: This is just generally inefficient, but given the relatively
+        # small number of instances we're processing, you won't notice
         for index, bit_width in enumerate(bit_width_list):
             # See if there is a corresponding file that matches this bit width
             # If there is, report the data, else report nothing for that entry
