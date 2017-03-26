@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 #########################################################
 #
 # instance_generate.py
@@ -111,6 +111,31 @@ def write_ss_inst_to_file(inst, uniquifier = '', prefix = 'ss_inst'):
         pass
     fhandle.close()
     pass
+
+def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
+    """Write out a subset sum instance to a .dat file to be consumed by AMPL/CPLEX."""
+
+    # Parameters defined:
+    #    set_len : Length of the set of numbers
+    #    target  : target sum
+    #    values  : Vector of values to choose from.
+
+    if uniquifier != '':
+        uniquifier = '_' + uniquifier
+        
+    file_name = '%s_%db_%dn%s.dat' % (prefix, inst.b, inst.n, uniquifier)
+    print 'Creating file', file_name
+
+    fhandle = open(file_name, 'w')
+
+    fhandle.write('param set_len = ' + str(inst.n) + ';\n')
+    fhandle.write('param target = ' + str(inst.target_sum) + ';\n')
+    fhandle.write('param values := ')
+    for index, num in enumerate(inst.number_list):
+        fhandle.write('[%s] %s ' % (index, num))
+    fhandle.write(';\n')
+    fhandle.close
+    pass
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -129,7 +154,10 @@ if __name__ == "__main__":
     parser.add_argument('--uniq',
                         type=str,
                         default='',
-                        help='File-name uniquifier. Default = <None>')    
+                        help='File-name uniquifier. Default = <None>')
+    parser.add_argument('--ampl',
+                        action='store_true',
+                        help='Write out the files in a format to be consumed by AMPL/CPLEX')
     parser.add_argument('--start_n',
                         type=int,
                         default=2,
@@ -178,7 +206,10 @@ if __name__ == "__main__":
         if args.p:
             print inst
         else:
-            write_ss_inst_to_file(inst, args.uniq)
+            if args.ampl:
+                write_ss_inst_to_ampl_file(inst, args.uniq)
+            else:
+                write_ss_inst_to_file(inst, args.uniq)
             pass
         pass
 
