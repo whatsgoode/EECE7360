@@ -130,20 +130,29 @@ def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
     print 'Creating file', data_file_name
     fhandle = open(data_file_name, 'w')
     fhandle.write('param set_len = ' + str(inst.n) + ';\n')
-    fhandle.write('param target = ' + str(inst.target_sum) + ';\n')
-    fhandle.write('param values := ')
+    fhandle.write('param target := ' + str(inst.target_sum) + ';\n')
+    fhandle.write('set values := ')
     for index, num in enumerate(inst.number_list):
-        fhandle.write('[%s] %s ' % (index, num))
+        fhandle.write('%s, ' % num)
     fhandle.write(';\n')
     fhandle.close()
 
     # Create the run file
     run_file_name = data_file_name.replace('.dat', '.run')
+    out_file_name = data_file_name.replace('.dat', '.out')
     print 'Creating file', run_file_name    
     fhandle = open(run_file_name, 'w')
     fhandle.write('model subset_sum.mod;\n')
     fhandle.write('data %s;\n' % data_file_name)
+    fhandle.write('\n')
+    fhandle.write('option solver cplex;\n')
+    fhandle.write("option cplex_options 'timelimit=600';\n")
     fhandle.write('solve;\n')
+    fhandle.write('\n')
+    fhandle.write('display _solve_elapsed_time > %s;\n' % out_file_name)
+    fhandle.write('display z > %s;\n' % out_file_name)
+    fhandle.write('display x > %s;\n' % out_file_name)
+    fhandle.write('\n')
     fhandle.close()
     
     pass

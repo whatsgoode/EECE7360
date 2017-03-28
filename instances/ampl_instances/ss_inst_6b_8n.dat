@@ -1,3 +1,3 @@
 param set_len = 8;
-param target = 157;
-param values := [0] 5 [1] 61 [2] 42 [3] 3 [4] 16 [5] 62 [6] 44 [7] 48 ;
+param target := 157;
+set values := 5, 61, 42, 3, 16, 62, 44, 48, ;

@@ -1,3 +1,11 @@
 model subset_sum.mod;
 data ss_inst_30b_60n.dat;
+
+option solver cplex;
+option cplex_options 'timelimit=600';
 solve;
+
+display _solve_elapsed_time > ss_inst_30b_60n.out;
+display z > ss_inst_30b_60n.out;
+display x > ss_inst_30b_60n.out;
+
