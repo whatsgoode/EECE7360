@@ -1,0 +1,3 @@
+model subset_sum.mod;
+data ss_inst_15b_28n.dat;
+solve;

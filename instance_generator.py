@@ -113,7 +113,8 @@ def write_ss_inst_to_file(inst, uniquifier = '', prefix = 'ss_inst'):
     pass
 
 def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
-    """Write out a subset sum instance to a .dat file to be consumed by AMPL/CPLEX."""
+    """Write out a subset sum instance to a .dat file to be consumed by AMPL/CPLEX.
+    Also create a corresponding .run file to let us provide it directly to AMPL."""
 
     # Parameters defined:
     #    set_len : Length of the set of numbers
@@ -123,18 +124,28 @@ def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
     if uniquifier != '':
         uniquifier = '_' + uniquifier
         
-    file_name = '%s_%db_%dn%s.dat' % (prefix, inst.b, inst.n, uniquifier)
-    print 'Creating file', file_name
+    data_file_name = '%s_%db_%dn%s.dat' % (prefix, inst.b, inst.n, uniquifier)
 
-    fhandle = open(file_name, 'w')
-
+    # Create the data file
+    print 'Creating file', data_file_name
+    fhandle = open(data_file_name, 'w')
     fhandle.write('param set_len = ' + str(inst.n) + ';\n')
     fhandle.write('param target = ' + str(inst.target_sum) + ';\n')
     fhandle.write('param values := ')
     for index, num in enumerate(inst.number_list):
         fhandle.write('[%s] %s ' % (index, num))
     fhandle.write(';\n')
-    fhandle.close
+    fhandle.close()
+
+    # Create the run file
+    run_file_name = data_file_name.replace('.dat', '.run')
+    print 'Creating file', run_file_name    
+    fhandle = open(run_file_name, 'w')
+    fhandle.write('model subset_sum.mod;\n')
+    fhandle.write('data %s;\n' % data_file_name)
+    fhandle.write('solve;\n')
+    fhandle.close()
+    
     pass
         
 if __name__ == "__main__":
