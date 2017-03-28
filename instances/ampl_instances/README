@@ -1,11 +1,11 @@
 Commands that were run to generate the instances in this dir (note -s 1 -> use SEED of 1):
 
-../instance_generator.py --start_n 16 --end_n 30 --stride_n 2 --start_b 15 --end_b 30 --stride_b 2 -s 1 --ampl
+../../instance_generator.py --start_n 16 --end_n 30 --stride_n 2 --start_b 15 --end_b 30 --stride_b 2 -s 1 --ampl
 
-../instance_generator.py --start_n 2 --end_n 10 --stride_n 2 --start_b 2 --end_b 10 --stride_b 2 -s 1 --ampl
+../../instance_generator.py --start_n 2 --end_n 10 --stride_n 2 --start_b 2 --end_b 10 --stride_b 2 -s 1 --ampl
 
-../instance_generator.py --start_n 90 --end_n 100 --stride_n 2 --start_b 2 --end_b 10 --stride_b 3 -s 1 --ampl
+../../instance_generator.py --start_n 90 --end_n 100 --stride_n 2 --start_b 2 --end_b 10 --stride_b 3 -s 1 --ampl
 
-../instance_generator.py --start_n 50 --end_n 100 --stride_n 10 --start_b 15 --end_b 30 --stride_b 5 -s 1 --ampl
+../../instance_generator.py --start_n 50 --end_n 100 --stride_n 10 --start_b 15 --end_b 30 --stride_b 5 -s 1 --ampl
 
-../instance_generator.py --start_n 2 --end_n 10 --stride_n 2 --start_b 20 --end_b 26 --stride_b 2 -s 1 --ampl
+../../instance_generator.py --start_n 2 --end_n 10 --stride_n 2 --start_b 20 --end_b 26 --stride_b 2 -s 1 --ampl
