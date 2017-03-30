@@ -142,10 +142,10 @@ def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
     out_file_name = data_file_name.replace('.dat', '.out')
     print 'Creating file', run_file_name    
     fhandle = open(run_file_name, 'w')
-    fhandle.write('model subset_sum.mod;\n')
+    fhandle.write('model ../src/subset_sum.mod;\n')
 
     
-    fhandle.write('data %s;\n' % data_file_name)
+    fhandle.write('data ../../instances/ampl_instances/%s;\n' % data_file_name)
     fhandle.write('\n')
     fhandle.write('option solver cplex;\n')
     fhandle.write("option cplex_options 'timelimit=600';\n")
@@ -153,7 +153,8 @@ def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
     fhandle.write('\n')
     fhandle.write('display _solve_elapsed_time > %s;\n' % out_file_name)
     fhandle.write('display calculated_sum > %s;\n' % out_file_name)
-    fhandle.write('display target_sum > %s;\n' % out_file_name)    
+    fhandle.write('display target_sum > %s;\n' % out_file_name)
+    fhandle.write('display set_len > %s;\n' % out_file_name)        
     fhandle.write('display x > %s;\n' % out_file_name)
     fhandle.write('\n')
     fhandle.close()
