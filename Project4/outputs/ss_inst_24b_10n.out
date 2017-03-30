@@ -1,6 +1,10 @@
-_solve_elapsed_time = 0.037407
+_solve_elapsed_time = 7.91538
 
-z = 5
+calculated_sum = 46853000
+
+target_sum = 46853000
+
+set_len = 10
 
 x [*] :=
  1  1
