@@ -1,3 +1,3 @@
 param set_len = 4;
 param target := 90;
-set values := 36, 0, 54, 11, ;
+param values := [1] 36 [2] 0 [3] 54 [4] 11 ;

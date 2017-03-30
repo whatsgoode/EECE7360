@@ -131,9 +131,9 @@ def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
     fhandle = open(data_file_name, 'w')
     fhandle.write('param set_len = ' + str(inst.n) + ';\n')
     fhandle.write('param target := ' + str(inst.target_sum) + ';\n')
-    fhandle.write('set values := ')
+    fhandle.write('param values := ')
     for index, num in enumerate(inst.number_list):
-        fhandle.write('%s, ' % num)
+        fhandle.write('[%s] %s ' % (index+1,num))
     fhandle.write(';\n')
     fhandle.close()
 

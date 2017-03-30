@@ -1,3 +1,3 @@
 param set_len = 6;
 param target := 3;
-set values := 2, 0, 3, 2, 3, 1, ;
+param values := [1] 2 [2] 0 [3] 3 [4] 2 [5] 3 [6] 1 ;
