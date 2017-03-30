@@ -1,11 +1,13 @@
-model subset_sum.mod;
-data ss_inst_29b_26n.dat;
+model ../src/subset_sum.mod;
+data ../../instances/ampl_instances/ss_inst_29b_26n.dat;
 
 option solver cplex;
 option cplex_options 'timelimit=600';
 solve;
 
 display _solve_elapsed_time > ss_inst_29b_26n.out;
-display z > ss_inst_29b_26n.out;
+display calculated_sum > ss_inst_29b_26n.out;
+display target_sum > ss_inst_29b_26n.out;
+display set_len > ss_inst_29b_26n.out;
 display x > ss_inst_29b_26n.out;
 

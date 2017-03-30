@@ -1,3 +1,3 @@
 param set_len = 4;
-param target := 1185619;
-set values := 250330, 236104, 352552, 949515, ;
+param target_sum = 1185619;
+param values := [0] 250330 [1] 236104 [2] 352552 [3] 949515 ;
