@@ -1,13 +1,17 @@
-_solve_elapsed_time = 0.008566
+_solve_elapsed_time = 0.007875
 
-z = 3
+calculated_sum = 12
+
+target_sum = 12
+
+set_len = 6
 
 x [*] :=
 1  0
-2  1
-3  0
-4  0
+2  0
+3  1
+4  1
 5  1
-6  1
+6  0
 ;
 
