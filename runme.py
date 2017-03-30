@@ -134,6 +134,44 @@ def generate_report(dir_name, ampl):
     fhandle.close()
 
     ####################################################################    
+    # ... same data, but in a format to lend itself to a plot
+    fhandle = open('margin_error_plot.csv', 'w')
+    instance_names = []
+    final_row = []    
+    for elem_count in num_elems_list:
+        # Find all files that match this elem_count
+        matching_num_elems = [fname for fname in file_list if get_num_elems(fname) == elem_count]
+
+        # Sort from smallest bit-width to largest
+        # BOZO_dhullih: currently not needed
+        matching_num_elems = sorted(matching_num_elems, key=lambda k: get_bit_width(k))
+
+        # BOZO_dhullih: This is just generally inefficient, but given the relatively
+        # small number of instances we're processing, you won't notice
+        for index, bit_width in enumerate(bit_width_list):
+            # See if there is a corresponding file that matches this bit width
+            # If there is, report the data, else report nothing for that entry
+            matches = [fname for fname in matching_num_elems if get_bit_width(fname) == bit_width]
+            assert len(matches) < 2, "Found multiple matches (%s), which is not expected." % matches
+
+            if len(matches) == 0:
+                pass
+            else:
+                # Add the meaningful data for this cell
+                # Extract the % margin for this instance
+                final_row.append(get_margin(matches[0], ampl))
+                instance_names.append('%sn%sb' % (str(elem_count), str(bit_width)))
+                # For debug -- report file name itself
+#                final_row.append(matches[0])
+                pass
+            pass
+        pass
+    fhandle.write(str(elem_count) + ',' + ','.join(str(n) for n in final_row) + '\n')
+    fhandle.write(',' + ','.join(str(n) for n in instance_names) + '\n')
+
+    fhandle.close()
+    
+    ####################################################################    
     # Generate a csv reporting the time each instance took
     fhandle = open('runtime.csv', 'w')
     fhandle.write(',' + ','.join(str(n) for n in bit_width_list) + '\n')
@@ -167,6 +205,44 @@ def generate_report(dir_name, ampl):
             pass
             
         fhandle.write(str(elem_count) + ',' + ','.join(str(n) for n in final_row) + '\n')
+
+    fhandle.close()
+
+    ####################################################################    
+    # ... same data, but in a format to lend itself to a plot
+    fhandle = open('runtime_plot.csv', 'w')
+    instance_names = []
+    final_row = []    
+    for elem_count in num_elems_list:
+        # Find all files that match this elem_count
+        matching_num_elems = [fname for fname in file_list if get_num_elems(fname) == elem_count]
+
+        # Sort from smallest bit-width to largest
+        # BOZO_dhullih: currently not needed
+        matching_num_elems = sorted(matching_num_elems, key=lambda k: get_bit_width(k))
+
+        # BOZO_dhullih: This is just generally inefficient, but given the relatively
+        # small number of instances we're processing, you won't notice
+        for index, bit_width in enumerate(bit_width_list):
+            # See if there is a corresponding file that matches this bit width
+            # If there is, report the data, else report nothing for that entry
+            matches = [fname for fname in matching_num_elems if get_bit_width(fname) == bit_width]
+            assert len(matches) < 2, "Found multiple matches (%s), which is not expected." % matches
+
+            if len(matches) == 0:
+                pass
+            else:
+                # Add the meaningful data for this cell
+                # Extract the % margin for this instance
+                final_row.append(get_runtime(matches[0], ampl))
+                instance_names.append('%sn%sb' % (str(elem_count), str(bit_width)))
+                # For debug -- report file name itself
+#                final_row.append(matches[0])
+                pass
+            pass
+        pass
+    fhandle.write(str(elem_count) + ',' + ','.join(str(n) for n in final_row) + '\n')
+    fhandle.write(',' + ','.join(str(n) for n in instance_names) + '\n')
 
     fhandle.close()
     
