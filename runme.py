@@ -188,8 +188,8 @@ def generate_report(dir_name, ampl):
                 pass
             pass
         pass
-    fhandle.write(str(elem_count) + ',' + ','.join(str(n) for n in final_row) + '\n')
-    fhandle.write(',' + ','.join(str(n) for n in instance_names) + '\n')
+    fhandle.write(','.join(str(n) for n in final_row) + '\n')
+    fhandle.write(','.join(str(n) for n in instance_names) + '\n')
 
     fhandle.close()
     
@@ -263,8 +263,8 @@ def generate_report(dir_name, ampl):
                 pass
             pass
         pass
-    fhandle.write(str(elem_count) + ',' + ','.join(str(n) for n in final_row) + '\n')
-    fhandle.write(',' + ','.join(str(n) for n in instance_names) + '\n')
+    fhandle.write(','.join(str(n) for n in final_row) + '\n')
+    fhandle.write(','.join(str(n) for n in instance_names) + '\n')
 
     fhandle.close()
     
