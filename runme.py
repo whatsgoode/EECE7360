@@ -21,7 +21,7 @@ import glob
 BIT_WIDTH = 2
 NUM_ELEMS = 3
 MARGIN = 3
-
+RUNTIME = 1 
 
 def get_margin(fname, ampl):
     """Extract the margin of error for the instance."""
@@ -40,7 +40,17 @@ def get_margin(fname, ampl):
     else:
         for line in fhandle.readlines():
             if 'Solved' in line:
-                margin = float(line.split(',')[MARGIN])
+                try:
+                    margin = float(line.split(',')[MARGIN])
+                except IndexError:
+                    # This is to account for Project1's slightly different format
+                    # (if it didn't solve it in 10 minutes, it simply gave up)                    
+                    if 'YES' in line:
+                        margin = 0
+                    else:
+                        margin = 'inf'
+                        pass
+                    pass
                 pass
             pass
         assert margin is not None, "Could not find margin in file '%s'" % fname
@@ -58,7 +68,19 @@ def get_runtime(fname, ampl):
             pass
         pass
     else:
-        assert 0, 'Support to be added for non-ampl case.'
+        for line in fhandle.readlines():
+            if 'Solved' in line:
+                # Get the reported runtime, strip it, and then get the raw value
+                # (the first element.. second is just the value 'second')
+                try:
+                    runtime = float(line.split(',')[RUNTIME].strip().split()[0])
+                except IndexError:
+                    # Default value of 10 minutes
+                    # This is to account for Project1's slightly different format
+                    # (if it didn't solve it in 10 minutes, it simply gave up)                    
+                    runtime = 60 * 10 
+                pass
+            pass
         pass
     
     return runtime
