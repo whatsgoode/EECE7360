@@ -1,0 +1,21 @@
+_solve_elapsed_time = 0.010194
+
+calculated_sum = 202529000
+
+target_sum = 202529000
+
+set_len = 10
+
+x [*] :=
+ 1  1
+ 2  0
+ 3  0
+ 4  0
+ 5  1
+ 6  0
+ 7  1
+ 8  0
+ 9  1
+10  1
+;
+

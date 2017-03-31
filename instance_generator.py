@@ -1,7 +1,7 @@
 #!/usr/bin/python2.7
 #########################################################
 #
-# instance_generate.py
+# instance_generator.py
 #     - Generate a series of subset sum instances
 #
 #########################################################
@@ -149,6 +149,7 @@ def write_ss_inst_to_ampl_file(inst, uniquifier = '', prefix = 'ss_inst'):
     fhandle.write('\n')
     fhandle.write('option solver cplex;\n')
     fhandle.write("option cplex_options 'timelimit=600';\n")
+    fhandle.write("option cplex_options 'integrality=3e-07';\n")
     fhandle.write('solve;\n')
     fhandle.write('\n')
     fhandle.write('display _solve_elapsed_time > %s;\n' % out_file_name)

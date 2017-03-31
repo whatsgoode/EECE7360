@@ -3,6 +3,7 @@ data ../../instances/ampl_instances/ss_inst_30b_70n.dat;
 
 option solver cplex;
 option cplex_options 'timelimit=600';
+option cplex_options 'integrality=3e-07';
 solve;
 
 display _solve_elapsed_time > ss_inst_30b_70n.out;

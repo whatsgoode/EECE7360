@@ -99,7 +99,7 @@ def get_num_elems(string):
     # Remove the 'n.out' at the end of the term.
     return int(os.path.basename(string).split('_')[NUM_ELEMS][:-5])
 
-def generate_report(dir_name, ampl):
+def generate_report(dir_name, ampl, uniquifier):
     """Summarize results in a specified directory."""
     
     file_list = glob.glob(os.getcwd() + '/' + (args.r) + '/*.out')
@@ -120,7 +120,7 @@ def generate_report(dir_name, ampl):
     bit_width_list = sorted(bit_width_list)
     num_elems_list = sorted(num_elems_list)    
 
-    fhandle = open('margin_error.csv', 'w')
+    fhandle = open('margin_error' + uniquifier + '.csv', 'w')
     fhandle.write(',' + ','.join(str(n) for n in bit_width_list) + '\n')
 
     for elem_count in num_elems_list:
@@ -157,7 +157,7 @@ def generate_report(dir_name, ampl):
 
     ####################################################################    
     # ... same data, but in a format to lend itself to a plot
-    fhandle = open('margin_error_plot.csv', 'w')
+    fhandle = open('margin_error_plot' + uniquifier + '.csv', 'w')
     instance_names = []
     final_row = []    
     for elem_count in num_elems_list:
@@ -195,7 +195,7 @@ def generate_report(dir_name, ampl):
     
     ####################################################################    
     # Generate a csv reporting the time each instance took
-    fhandle = open('runtime.csv', 'w')
+    fhandle = open('runtime' + uniquifier + '.csv', 'w')
     fhandle.write(',' + ','.join(str(n) for n in bit_width_list) + '\n')
 
     for elem_count in num_elems_list:
@@ -232,7 +232,7 @@ def generate_report(dir_name, ampl):
 
     ####################################################################    
     # ... same data, but in a format to lend itself to a plot
-    fhandle = open('runtime_plot.csv', 'w')
+    fhandle = open('runtime_plot' + uniquifier + '.csv', 'w')
     instance_names = []
     final_row = []    
     for elem_count in num_elems_list:
@@ -316,6 +316,9 @@ if __name__ == "__main__":
     parser.add_argument('-r',
                         type=str,
                         help=('Process out files in specified directory, generating a report.'))
+    parser.add_argument('-u',
+                        type=str,
+                        help=('Uniquifier term for reports generated via -r.'))
     parser.add_argument('-t',
                         type=int,
                         default=8,
@@ -366,7 +369,7 @@ if __name__ == "__main__":
         pass
 
     if args.r:
-        generate_report(args.r, args.ampl)
+        generate_report(args.r, args.ampl, args.u)
         pass
     pass
                               
