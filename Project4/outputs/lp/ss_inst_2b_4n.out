@@ -1,0 +1,15 @@
+_solve_elapsed_time = 0.003564
+
+calculated_sum = 4
+
+target_sum = 4
+
+set_len = 4
+
+x [*] :=
+1  1
+2  1
+3  0
+4  0
+;
+

@@ -1,0 +1,8 @@
+Command that was run to generate the out files.
+
+./runme.py -i instances/ampl_instances/ -d Project4/outputs/ -e ampl
+
+Note this was run at the top dir.
+
+Also note that, while the results are written into Project4/outputs, I went
+and moved them into their own subdir (ilp vs lp).
