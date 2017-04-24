@@ -1,0 +1,9 @@
+Input: ss_inst_4b_10n
+Target: 42ll
+Size: 10
+Solved: YES, 0 seconds, 42ll, 1.0000000000
+Solution:
+14
+11
+13
+4
