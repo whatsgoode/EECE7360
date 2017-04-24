@@ -41,7 +41,8 @@ SUBSETSUM_ALGORITHM(P5_Tabu);
 
 //! Helper funtions - 1OPT is here since is is called twice
 
-static uint32_t P5__1OPT(Subset_Sum_t * zptInst);
+static void P5__1OPT(Subset_Sum_t * zptInst);
+static void P5__1OPT_Tabu(Subset_Sum_t * zptInst);
 
 // ***** Local variables ******************************************************
 
@@ -120,17 +121,17 @@ int main(int argc, char **argv)
         Subset_Sum_Solve(&mtProblem_Greedy);
         printf("%s Greedy solved\r\n", argv[1]);
 		  sprintf(mnOutFldr,"%s", "greedy");
-        Subset_SumWriteData(&mtProblem, mnOutFldr);
+        Subset_SumWriteData(&mtProblem_Greedy, mnOutFldr);
         
         Subset_Sum_Solve(&mtProblem_Random);
         printf("%s Random solved\r\n", argv[1]);
 		  sprintf(mnOutFldr,"%s", "random");
-        Subset_SumWriteData(&mtProblem, mnOutFldr);
+        Subset_SumWriteData(&mtProblem_Random, mnOutFldr);
         
         Subset_Sum_Solve(&mtProblem_Tabu);
         printf("%s Tabu solved\r\n", argv[1]);
 		  sprintf(mnOutFldr,"%s", "tabu");
-        Subset_SumWriteData(&mtProblem, mnOutFldr);
+        Subset_SumWriteData(&mtProblem_Tabu, mnOutFldr);
         
         // Cleanup
         
@@ -224,8 +225,6 @@ SUBSETSUM_ALGORITHM(P5_Random)
 {
     uint32_t xuwLoop;
     uint64_t xulTempSum = 0u;
-    time_t xtStartTime, xtCurrTime;
-    bool xbDone = false;
     int xwRand;
 
     // Clear all selections
@@ -285,8 +284,6 @@ SUBSETSUM_ALGORITHM(P5_Tabu)
 {
     uint32_t xuwLoop;
     uint64_t xulTempSum = 0u;
-    time_t xtStartTime, xtCurrTime;
-    bool xbDone = false;
 
     // Clear all selections
 
@@ -349,9 +346,10 @@ SUBSETSUM_ALGORITHM(P5_Tabu)
 *
 ******************************************************************************/
 
-static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
+static void P5__1OPT(Subset_Sum_t * zptInst)
 {
-    uint32_t xuwLoop, xuwIndex, xuwTempSum;
+    uint32_t xuwLoop, xuwIndex;
+    uint64_t xuwTempSum = 0u;
     time_t xtStartTime, xtCurrTime;
     bool xbDone = false;
     
@@ -448,9 +446,10 @@ static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
 *
 ******************************************************************************/
 
-static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
+static void P5__1OPT_Tabu(Subset_Sum_t * zptInst)
 {
-   uint32_t xuwLoop, xuwIndex, xuwTempSum;
+   uint32_t xuwLoop, xuwIndex;
+   uint64_t xuwTempSum = 0u;
    time_t xtStartTime, xtCurrTime;
    bool xbDone = false;
 	bool xaabList[100u][100u]; 	// Use current largest dimensions 
