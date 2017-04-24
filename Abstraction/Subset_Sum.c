@@ -299,13 +299,13 @@ void Subset_SumDisplayData (Subset_Sum_t * zptHandle)
 *
 ******************************************************************************/
 
-void Subset_SumWriteData (Subset_Sum_t * zptHandle)
+void Subset_SumWriteData (Subset_Sum_t * zptHandle, char * zpnFldr)
 {
     char xacFileName[128u];
 
     // Create file
 
-    sprintf(xacFileName, "../outputs/%s.out", zptHandle->sacName);
+    sprintf(xacFileName, "../outputs/%s/%s.out", zpnFldr, zptHandle->sacName);
     int xtFile = open(xacFileName, O_RDWR | O_CREAT | O_APPEND, 0777);
 
     // Call generic write

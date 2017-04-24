@@ -291,11 +291,6 @@ SUBSETSUM_ALGORITHM(P5_Tabu)
         Subset_Sum_Select(zptInst, xuwLoop, EXCLUDED);
     }
     
-    // Start the timer
-
-    xtStartTime = time(NULL);
-    xtCurrTime = 0u;
-    
     // Loop through the set, adding any element that is legal
     // TBD - Sorted?
     // TBD - Smallest first? Largest first?
@@ -320,7 +315,9 @@ SUBSETSUM_ALGORITHM(P5_Tabu)
             (xulTempSum <= zptInst->sulTarget) ? INCLUDED : EXCLUDED;
     }
     
-    // TBD - Tabu list
+	// Improve the solution if time remains
+	
+    P5__1OPT_Tabu(zptInst);
 }
 
 // \}
@@ -350,7 +347,7 @@ SUBSETSUM_ALGORITHM(P5_Tabu)
 
 static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
 {
-    uint32_t xuwLoop;
+    uint32_t xuwLoop, xuwIndex, xuwTempSum;
     time_t xtStartTime, xtCurrTime;
     bool xbDone = false;
     
@@ -359,6 +356,195 @@ static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
     xtStartTime = time(NULL);
     xtCurrTime = 0u;
     
+	while((Subset_Sum_GetSum(zptInst) != zptInst->sulTarget) &&
+	  (xtCurrTime < muwTimeLimit) &&
+	  (xbDone == false))
+	{
+		
+		// Scan for an incuded element to exclude
+		
+		for (xuwIndex = 0; xuwIndex < zptInst->suwSize; xuwIndex++)
+		{
+			
+			if (zptInst->saucSolution[xuwIndex] == INCLUDED)
+			{
+				// Determine the initial "best"
+				
+				xuwTempSum = Subset_Sum_GetSum(zptInst);
+				
+				// Scan for an excluded element to include
+				
+				for (xuwLoop = 0; xuwLoop < zptInst->suwSize; xuwLoop++)
+				{
+					
+					// Test any possible swap candidates for a better solution
+					
+					if ((zptInst->saucSolution[xuwLoop] == EXCLUDED) && 
+						(xuwLoop != xuwIndex))
+					{
+						
+						// If the candidate yields a better solution, improve it and reset the
+						// search
+						
+						if ((zptInst->sauwInputSet[xuwIndex] < zptInst->sauwInputSet[xuwLoop]) &&
+						    (xuwTempSum - zptInst->sauwInputSet[xuwIndex] + zptInst->sauwInputSet[xuwLoop]) <= zptInst->sulTarget)
+						{
+								zptInst->saucSolution[xuwIndex] = EXCLUDED;
+								zptInst->saucSolution[xuwLoop] = INCLUDED;
+								
+								xbDone = true;
+								break;
+						}
+					}
+				}
+			}
+			
+			// Update the elapsed time
+
+            xtCurrTime = time(NULL) - xtStartTime;
+			
+			// If a better solution was found, reset outter loop as well.
+			
+			if (xbDone == true)
+			{
+				xbDone = false;
+				break;
+			}
+			
+			// If we have made it to the last element and no better set was found,
+			// this is a local optimum and we are done.
+			
+			if (xuwIndex == (zptInst->suwSize - 1u))
+			{
+				xbDone = true;
+				break;
+			}
+		}
+	}
+	
+	// Update the total elapsed time
+
+    zptInst->suwTime = xtCurrTime;
+}
+
+/**************************************************************************//**
+*
+* \anchor      P5__1OPT_Tabu
+*
+* \brief       1OPT neighborhood exploration for a subset sum instance using
+*			   a tabu list.
+*
+* \details     Improves an instance of Subset Sum by swapping any valid
+*              elements. Keeps a tabu list of swaps to avoid testing bad
+*			   swaps
+*
+* \param[in]   zptInst            Instance to solve
+*
+* \retval      void
+*
+******************************************************************************/
+
+static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
+{
+    uint32_t xuwLoop, xuwIndex, xuwTempSum;
+    time_t xtStartTime, xtCurrTime;
+    bool xbDone = false;
+	bool xaabList[100u][100u]; 	// Use current largest dimensions 
+	
+	// Initialize tabu list
+	
+	for (xuwIndex = 0; xuwIndex < 100; xuwIndex++)
+	{	
+			for (xuwLoop = 0; xuwLoop < 100; xuwLoop++)
+			{
+				xaabList[xuwIndex][xuwLoop] = false;
+			}
+	}
+    
+    // Start the timer
+
+    xtStartTime = time(NULL);
+    xtCurrTime = 0u;
+    
+	while((Subset_Sum_GetSum(zptInst) != zptInst->sulTarget) &&
+	  (xtCurrTime < muwTimeLimit) &&
+	  (xbDone == false))
+	{
+		
+		// Scan for an incuded element to exclude
+		
+		for (xuwIndex = 0; xuwIndex < zptInst->suwSize; xuwIndex++)
+		{
+			
+			if (zptInst->saucSolution[xuwIndex] == INCLUDED)
+			{
+				// Determine the initial "best"
+				
+				xuwTempSum = Subset_Sum_GetSum(zptInst);
+				
+				// Scan for an excluded element to include
+				
+				for (xuwLoop = 0; xuwLoop < zptInst->suwSize; xuwLoop++)
+				{
+					
+					// If the candidates have been swapped before (tabu) ignore them
+					
+					if (xaabList[xuwIndex][xuwLoop] == true)
+					{
+						continue;
+					}
+					
+					// Test any possible swap candidates for a better solution
+					
+					if ((zptInst->saucSolution[xuwLoop] == EXCLUDED) && 
+						(xuwLoop != xuwIndex))
+					{
+						
+						// If the candidate yields a better solution, improve it and reset the
+						// search
+						
+						if ((zptInst->sauwInputSet[xuwIndex] < zptInst->sauwInputSet[xuwLoop]) &&
+						    (xuwTempSum - zptInst->sauwInputSet[xuwIndex] + zptInst->sauwInputSet[xuwLoop]) <= zptInst->sulTarget)
+						{
+								zptInst->saucSolution[xuwIndex] = EXCLUDED;
+								zptInst->saucSolution[xuwLoop] = INCLUDED;
+								
+								xaabList[xuwIndex][xuwLoop] = true;
+								xaabList[xuwLoop][xuwIndex] = true;
+								
+								xbDone = true;
+								break;
+						}
+					}
+				}
+			}
+			
+			// Update the elapsed time
+
+            xtCurrTime = time(NULL) - xtStartTime;
+			
+			// If a better solution was found, reset outter loop as well.
+			
+			if (xbDone == true)
+			{
+				xbDone = false;
+				break;
+			}
+			
+			// If we have made it to the last element and no better set was found,
+			// this is a local optimum and we are done.
+			
+			if (xuwIndex == (zptInst->suwSize - 1u))
+			{
+				xbDone = true;
+				break;
+			}
+		}
+	}
+	
+	// Update the total elapsed time
+
+    zptInst->suwTime = xtCurrTime;
 }
 
 // \}
