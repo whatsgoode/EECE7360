@@ -50,6 +50,7 @@ static Subset_Sum_t mtProblem_Random;
 static Subset_Sum_t mtProblem_Tabu;
 
 static uint32_t muwTimeLimit;
+char mnOutFldr[64];
 
 
 /**************************************************************************//**
@@ -118,15 +119,18 @@ int main(int argc, char **argv)
         
         Subset_Sum_Solve(&mtProblem_Greedy);
         printf("%s Greedy solved\r\n", argv[1]);
-        Subset_SumWriteData(&mtProblem);
+		sprintf(mnOutFldr,"%s", "greedy");
+        Subset_SumWriteData(&mtProblem, mnOutFldr);
         
         Subset_Sum_Solve(&mtProblem_Random);
         printf("%s Random solved\r\n", argv[1]);
-        Subset_SumWriteData(&mtProblem);
+		sprintf(mnOutFldr,"%s", "random");
+        Subset_SumWriteData(&mtProblem, mnOutFldr);
         
         Subset_Sum_Solve(&mtProblem_Tabu);
         printf("%s Tabu solved\r\n", argv[1]);
-        Subset_SumWriteData(&mtProblem);
+		sprintf(mnOutFldr,"%s", "tabu");
+        Subset_SumWriteData(&mtProblem, mnOutFldr);
         
         // Cleanup
         
