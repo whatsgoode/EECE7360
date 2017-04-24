@@ -118,15 +118,15 @@ int main(int argc, char **argv)
         
         Subset_Sum_Solve(&mtProblem_Greedy);
         printf("%s Greedy solved\r\n", argv[1]);
-        Subset_SumWriteData(&mtProblem);
+        Subset_SumWriteData(&mtProblem_Greedy);
         
         Subset_Sum_Solve(&mtProblem_Random);
         printf("%s Random solved\r\n", argv[1]);
-        Subset_SumWriteData(&mtProblem);
+        Subset_SumWriteData(&mtProblem_Random);
         
         Subset_Sum_Solve(&mtProblem_Tabu);
         printf("%s Tabu solved\r\n", argv[1]);
-        Subset_SumWriteData(&mtProblem);
+        Subset_SumWriteData(&mtProblem_Tabu);
         
         // Cleanup
         
@@ -446,9 +446,9 @@ static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
 
 static uint32_t P5__1OPT(Subset_Sum_t * zptInst)
 {
-    uint32_t xuwLoop, xuwIndex, xuwTempSum;
-    time_t xtStartTime, xtCurrTime;
-    bool xbDone = false;
+   uint32_t xuwLoop, xuwIndex, xuwTempSum;
+   time_t xtStartTime, xtCurrTime;
+   bool xbDone = false;
 	bool xaabList[100u][100u]; 	// Use current largest dimensions 
 	
 	// Initialize tabu list
