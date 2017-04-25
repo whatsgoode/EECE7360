@@ -1,4 +1,5 @@
 Input: ss_inst_17b_30n
-Target: 993264ll
+Target: 993264
 Size: 30
-Solved: NO, 0 seconds, 992289ll, 0.9990183711
+Initial: 977529
+Solved: NO, 0 seconds, 992575, 0.9993063211

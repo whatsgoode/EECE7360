@@ -1,7 +1,8 @@
 Input: ss_inst_22b_6n
-Target: 7279778ll
+Target: 7279778
 Size: 6
-Solved: YES, 0 seconds, 7279778ll, 1.0000000000
+Initial: 6076443
+Solved: YES, 0 seconds, 7279778, 1.0000000000
 Solution:
 1229730
 4177766

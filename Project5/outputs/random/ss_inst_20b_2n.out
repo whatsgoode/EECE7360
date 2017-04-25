@@ -1,4 +1,7 @@
 Input: ss_inst_20b_2n
-Target: 473203ll
+Target: 473203
 Size: 2
-Solved: NO, 0 seconds, 0ll, 0.0000000000
+Initial: 473203
+Solved: YES, 0 seconds, 473203, 1.0000000000
+Solution:
+473203

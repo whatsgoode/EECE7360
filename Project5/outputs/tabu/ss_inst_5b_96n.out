@@ -1,7 +1,8 @@
 Input: ss_inst_5b_96n
-Target: 696ll
+Target: 696
 Size: 96
-Solved: YES, 0 seconds, 696ll, 1.0000000000
+Initial: 696
+Solved: YES, 0 seconds, 696, 1.0000000000
 Solution:
 17
 11

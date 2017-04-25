@@ -1,7 +1,8 @@
 Input: ss_inst_8b_8n
-Target: 644ll
+Target: 644
 Size: 8
-Solved: YES, 0 seconds, 644ll, 1.0000000000
+Initial: 585
+Solved: YES, 0 seconds, 644, 1.0000000000
 Solution:
 255
 50

@@ -1,4 +1,5 @@
 Input: ss_inst_24b_10n
-Target: 46852987ll
+Target: 46852987
 Size: 10
-Solved: NO, 0 seconds, 46563517ll, 0.9938216805
+Initial: 42412482
+Solved: NO, 0 seconds, 45969712, 0.9811479449

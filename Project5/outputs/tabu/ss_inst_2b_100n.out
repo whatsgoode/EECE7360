@@ -1,7 +1,8 @@
 Input: ss_inst_2b_100n
-Target: 72ll
+Target: 72
 Size: 100
-Solved: YES, 0 seconds, 72ll, 1.0000000000
+Initial: 72
+Solved: YES, 0 seconds, 72, 1.0000000000
 Solution:
 2
 2

@@ -1,4 +1,5 @@
 Input: ss_inst_30b_70n
-Target: 3141738046ll
+Target: 3141738046
 Size: 70
-Solved: NO, 0 seconds, 3141164165ll, 0.9998173714
+Initial: 3129745381
+Solved: NO, 0 seconds, 3141195532, 0.9998273253

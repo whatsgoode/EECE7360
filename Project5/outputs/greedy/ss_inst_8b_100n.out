@@ -1,7 +1,8 @@
 Input: ss_inst_8b_100n
-Target: 5883ll
+Target: 5883
 Size: 100
-Solved: YES, 0 seconds, 5883ll, 1.0000000000
+Initial: 5877
+Solved: YES, 0 seconds, 5883, 1.0000000000
 Solution:
 246
 134

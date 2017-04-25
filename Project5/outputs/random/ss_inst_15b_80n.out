@@ -1,4 +1,5 @@
 Input: ss_inst_15b_80n
-Target: 757993ll
+Target: 757993
 Size: 80
-Solved: NO, 0 seconds, 757991ll, 0.9999973774
+Initial: 604595
+Solved: NO, 0 seconds, 757991, 0.9999973774

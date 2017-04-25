@@ -1,7 +1,8 @@
 Input: ss_inst_2b_4n
-Target: 4ll
+Target: 4
 Size: 4
-Solved: YES, 0 seconds, 4ll, 1.0000000000
+Initial: 4
+Solved: YES, 0 seconds, 4, 1.0000000000
 Solution:
 3
 1

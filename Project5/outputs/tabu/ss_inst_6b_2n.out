@@ -1,6 +1,7 @@
 Input: ss_inst_6b_2n
-Target: 32ll
+Target: 32
 Size: 2
-Solved: YES, 0 seconds, 32ll, 1.0000000000
+Initial: 32
+Solved: YES, 0 seconds, 32, 1.0000000000
 Solution:
 32

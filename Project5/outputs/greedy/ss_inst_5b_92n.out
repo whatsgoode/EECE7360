@@ -1,7 +1,8 @@
 Input: ss_inst_5b_92n
-Target: 612ll
+Target: 612
 Size: 92
-Solved: YES, 0 seconds, 612ll, 1.0000000000
+Initial: 612
+Solved: YES, 0 seconds, 612, 1.0000000000
 Solution:
 13
 1

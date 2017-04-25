@@ -201,6 +201,10 @@ SUBSETSUM_ALGORITHM(P5_Greedy)
         zptInst->saucSolution[xuwLoop] = 
             (xulTempSum <= zptInst->sulTarget) ? INCLUDED : EXCLUDED;
     }
+
+    // Save the initial solution for reference
+
+    zptInst->sulInitialSol = Subset_Sum_GetSum(zptInst);
     
     // Improve the solution if time remains
     
@@ -259,7 +263,11 @@ SUBSETSUM_ALGORITHM(P5_Random)
             zptInst->saucSolution[xuwLoop] = (xwRand > 0) ? INCLUDED : EXCLUDED;
         }
     }
-    
+
+    // Save the initial solution for reference
+
+    zptInst->sulInitialSol = Subset_Sum_GetSum(zptInst);
+
     // Improve the solution if time remains
     
     P5__1OPT(zptInst);
@@ -315,8 +323,12 @@ SUBSETSUM_ALGORITHM(P5_Tabu)
         zptInst->saucSolution[xuwLoop] = 
             (xulTempSum <= zptInst->sulTarget) ? INCLUDED : EXCLUDED;
     }
+
+    // Save the initial solution for reference
+
+    zptInst->sulInitialSol = Subset_Sum_GetSum(zptInst);
     
-	// Improve the solution if time remains
+    // Improve the solution if time remains
 	
     P5__1OPT_Tabu(zptInst);
 }

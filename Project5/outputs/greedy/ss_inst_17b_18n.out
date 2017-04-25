@@ -1,4 +1,5 @@
 Input: ss_inst_17b_18n
-Target: 714570ll
+Target: 714570
 Size: 18
-Solved: NO, 0 seconds, 714559ll, 0.9999846220
+Initial: 709101
+Solved: NO, 0 seconds, 714559, 0.9999846220

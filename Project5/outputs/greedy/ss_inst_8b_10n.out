@@ -1,4 +1,5 @@
 Input: ss_inst_8b_10n
-Target: 862ll
+Target: 862
 Size: 10
-Solved: NO, 0 seconds, 861ll, 0.9988399148
+Initial: 855
+Solved: NO, 0 seconds, 861, 0.9988399148

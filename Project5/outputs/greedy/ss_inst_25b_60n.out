@@ -1,4 +1,5 @@
 Input: ss_inst_25b_60n
-Target: 540146550ll
+Target: 540146550
 Size: 60
-Solved: NO, 0 seconds, 540129575ll, 0.9999685884
+Initial: 540129575
+Solved: NO, 0 seconds, 540129575, 0.9999685884

@@ -1,4 +1,5 @@
 Input: ss_inst_6b_8n
-Target: 157ll
+Target: 157
 Size: 8
-Solved: NO, 0 seconds, 147ll, 0.9363057613
+Initial: 127
+Solved: NO, 0 seconds, 147, 0.9363057613

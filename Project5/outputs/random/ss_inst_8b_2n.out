@@ -1,4 +1,5 @@
 Input: ss_inst_8b_2n
-Target: 57ll
+Target: 57
 Size: 2
-Solved: NO, 0 seconds, 0ll, 0.0000000000
+Initial: 0
+Solved: NO, 0 seconds, 0, 0.0000000000

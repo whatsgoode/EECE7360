@@ -1,4 +1,7 @@
 Input: ss_inst_26b_2n
-Target: 51869832ll
+Target: 51869832
 Size: 2
-Solved: NO, 0 seconds, 0ll, 0.0000000000
+Initial: 51869832
+Solved: YES, 0 seconds, 51869832, 1.0000000000
+Solution:
+51869832

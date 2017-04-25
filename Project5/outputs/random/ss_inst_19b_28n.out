@@ -1,4 +1,5 @@
 Input: ss_inst_19b_28n
-Target: 3201599ll
+Target: 3201599
 Size: 28
-Solved: NO, 0 seconds, 3201452ll, 0.9999541044
+Initial: 3112865
+Solved: NO, 0 seconds, 3200728, 0.9997279644

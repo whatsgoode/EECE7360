@@ -1,4 +1,5 @@
 Input: ss_inst_15b_18n
-Target: 126049ll
+Target: 126049
 Size: 18
-Solved: NO, 0 seconds, 125315ll, 0.9941768646
+Initial: 121731
+Solved: NO, 0 seconds, 125706, 0.9972788095

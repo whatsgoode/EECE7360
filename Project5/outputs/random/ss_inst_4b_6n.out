@@ -1,4 +1,5 @@
 Input: ss_inst_4b_6n
-Target: 12ll
+Target: 12
 Size: 6
-Solved: NO, 0 seconds, 11ll, 0.9166666865
+Initial: 3
+Solved: NO, 0 seconds, 11, 0.9166666865

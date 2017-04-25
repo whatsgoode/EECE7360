@@ -1,7 +1,8 @@
 Input: ss_inst_5b_94n
-Target: 756ll
+Target: 756
 Size: 94
-Solved: YES, 0 seconds, 756ll, 1.0000000000
+Initial: 756
+Solved: YES, 0 seconds, 756, 1.0000000000
 Solution:
 4
 10

@@ -1,4 +1,5 @@
 Input: ss_inst_26b_10n
-Target: 202529225ll
+Target: 202529225
 Size: 10
-Solved: NO, 0 seconds, 202258373ll, 0.9986625910
+Initial: 200095745
+Solved: NO, 0 seconds, 202258373, 0.9986625910

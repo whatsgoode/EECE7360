@@ -1,4 +1,5 @@
 Input: ss_inst_6b_10n
-Target: 255ll
+Target: 255
 Size: 10
-Solved: NO, 0 seconds, 231ll, 0.9058823586
+Initial: 131
+Solved: NO, 0 seconds, 179, 0.7019608021

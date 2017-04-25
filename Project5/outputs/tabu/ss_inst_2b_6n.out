@@ -1,7 +1,8 @@
 Input: ss_inst_2b_6n
-Target: 3ll
+Target: 3
 Size: 6
-Solved: YES, 0 seconds, 3ll, 1.0000000000
+Initial: 3
+Solved: YES, 0 seconds, 3, 1.0000000000
 Solution:
 2
 0

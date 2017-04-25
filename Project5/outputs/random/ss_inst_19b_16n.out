@@ -1,4 +1,5 @@
 Input: ss_inst_19b_16n
-Target: 2025618ll
+Target: 2025618
 Size: 16
-Solved: NO, 0 seconds, 2017875ll, 0.9961774349
+Initial: 1964725
+Solved: NO, 0 seconds, 2025412, 0.9998983145

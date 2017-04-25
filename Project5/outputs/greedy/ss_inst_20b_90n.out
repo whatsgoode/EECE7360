@@ -1,4 +1,5 @@
 Input: ss_inst_20b_90n
-Target: 27467567ll
+Target: 27467567
 Size: 90
-Solved: NO, 0 seconds, 27466688ll, 0.9999679327
+Initial: 27417775
+Solved: NO, 0 seconds, 27466688, 0.9999679327

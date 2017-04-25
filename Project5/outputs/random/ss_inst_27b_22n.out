@@ -1,4 +1,5 @@
 Input: ss_inst_27b_22n
-Target: 560726529ll
+Target: 560726529
 Size: 22
-Solved: NO, 0 seconds, 560424324ll, 0.9994610548
+Initial: 558361437
+Solved: NO, 0 seconds, 560275555, 0.9991958141

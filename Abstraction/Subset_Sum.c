@@ -436,21 +436,24 @@ static void SS__Write (Subset_Sum_t * zptHandle, int ziFd)
     sprintf(xaucBuffer, "Input: %s\n", zptHandle->sacName);
     write(ziFd, xaucBuffer, strlen(xaucBuffer));
 
-    sprintf(xaucBuffer, "Target: %ull\n", zptHandle->sulTarget);
+    sprintf(xaucBuffer, "Target: %llu\n", zptHandle->sulTarget);
     write(ziFd, xaucBuffer, strlen(xaucBuffer));
 
     sprintf(xaucBuffer, "Size: %d\n", zptHandle->suwSize);
     write(ziFd, xaucBuffer, strlen(xaucBuffer));
 
+    sprintf(xaucBuffer, "Initial: %llu\n", zptHandle->sulInitialSol);
+    write(ziFd, xaucBuffer, strlen(xaucBuffer));    
+    
     if (Subset_Sum_GetSum(zptHandle) != zptHandle->sulTarget)
     {
-      sprintf(xaucBuffer, "Solved: NO, %d seconds, %ull, %.10f\n", zptHandle->suwTime, Subset_Sum_GetSum(zptHandle),
+      sprintf(xaucBuffer, "Solved: NO, %d seconds, %llu, %.10f\n", zptHandle->suwTime, Subset_Sum_GetSum(zptHandle),
 	      Subset_Sum_GetSum(zptHandle) / (float)zptHandle->sulTarget);
       write(ziFd, xaucBuffer, strlen(xaucBuffer));
     }
     else
     {
-      sprintf(xaucBuffer, "Solved: YES, %d seconds, %ull, %.10f\n", zptHandle->suwTime, Subset_Sum_GetSum(zptHandle),
+      sprintf(xaucBuffer, "Solved: YES, %d seconds, %llu, %.10f\n", zptHandle->suwTime, Subset_Sum_GetSum(zptHandle),
 	      Subset_Sum_GetSum(zptHandle) / (float)zptHandle->sulTarget);
         write(ziFd, xaucBuffer, strlen(xaucBuffer));
 

@@ -1,7 +1,8 @@
 Input: ss_inst_5b_98n
-Target: 789ll
+Target: 789
 Size: 98
-Solved: YES, 0 seconds, 789ll, 1.0000000000
+Initial: 789
+Solved: YES, 0 seconds, 789, 1.0000000000
 Solution:
 12
 3

@@ -1,8 +1,5 @@
 Input: ss_inst_26b_6n
-Target: 167698845ll
+Target: 167698845
 Size: 6
-Solved: YES, 0 seconds, 167698845ll, 1.0000000000
-Solution:
-63710915
-64819743
-39168187
+Initial: 145552863
+Solved: NO, 0 seconds, 145552863, 0.8679419160

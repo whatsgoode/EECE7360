@@ -1,7 +1,8 @@
 Input: ss_inst_22b_4n
-Target: 3897943ll
+Target: 3897943
 Size: 4
-Solved: YES, 0 seconds, 3897943ll, 1.0000000000
+Initial: 2185020
+Solved: YES, 0 seconds, 3897943, 1.0000000000
 Solution:
 1762983
 2134960

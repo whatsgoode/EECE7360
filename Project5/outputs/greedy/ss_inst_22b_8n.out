@@ -1,7 +1,8 @@
 Input: ss_inst_22b_8n
-Target: 7757722ll
+Target: 7757722
 Size: 8
-Solved: YES, 0 seconds, 7757722ll, 1.0000000000
+Initial: 7465232
+Solved: YES, 0 seconds, 7757722, 1.0000000000
 Solution:
 1394583
 2082078

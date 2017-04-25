@@ -1,7 +1,8 @@
 Input: ss_inst_24b_8n
-Target: 39247844ll
+Target: 39247844
 Size: 8
-Solved: YES, 0 seconds, 39247844ll, 1.0000000000
+Initial: 37171408
+Solved: YES, 0 seconds, 39247844, 1.0000000000
 Solution:
 9781544
 3817401

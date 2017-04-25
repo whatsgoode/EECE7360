@@ -1,4 +1,5 @@
 Input: ss_inst_17b_28n
-Target: 815076ll
+Target: 815076
 Size: 28
-Solved: NO, 0 seconds, 814495ll, 0.9992871881
+Initial: 788530
+Solved: NO, 0 seconds, 814819, 0.9996846914

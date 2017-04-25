@@ -1,7 +1,5 @@
 Input: ss_inst_8b_4n
-Target: 388ll
+Target: 388
 Size: 4
-Solved: YES, 0 seconds, 388ll, 1.0000000000
-Solution:
-234
-154
+Initial: 197
+Solved: NO, 0 seconds, 234, 0.6030927896

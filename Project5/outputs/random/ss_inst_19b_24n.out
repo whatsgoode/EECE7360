@@ -1,4 +1,5 @@
 Input: ss_inst_19b_24n
-Target: 3273598ll
+Target: 3273598
 Size: 24
-Solved: NO, 0 seconds, 3272118ll, 0.9995478988
+Initial: 3064149
+Solved: NO, 0 seconds, 3269809, 0.9988425374

@@ -1,7 +1,8 @@
 Input: ss_inst_2b_90n
-Target: 67ll
+Target: 67
 Size: 90
-Solved: YES, 0 seconds, 67ll, 1.0000000000
+Initial: 67
+Solved: YES, 0 seconds, 67, 1.0000000000
 Solution:
 1
 2

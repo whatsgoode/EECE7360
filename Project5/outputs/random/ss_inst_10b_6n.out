@@ -1,7 +1,8 @@
 Input: ss_inst_10b_6n
-Target: 1478ll
+Target: 1478
 Size: 6
-Solved: YES, 0 seconds, 1478ll, 1.0000000000
+Initial: 1478
+Solved: YES, 0 seconds, 1478, 1.0000000000
 Solution:
 773
 472

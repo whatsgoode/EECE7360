@@ -1,4 +1,5 @@
 Input: ss_inst_21b_24n
-Target: 11170341ll
+Target: 11170341
 Size: 24
-Solved: NO, 0 seconds, 11127851ll, 0.9961961508
+Initial: 10239503
+Solved: NO, 0 seconds, 11168525, 0.9998373985

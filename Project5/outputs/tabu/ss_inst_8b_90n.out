@@ -1,7 +1,8 @@
 Input: ss_inst_8b_90n
-Target: 6301ll
+Target: 6301
 Size: 90
-Solved: YES, 0 seconds, 6301ll, 1.0000000000
+Initial: 6295
+Solved: YES, 0 seconds, 6301, 1.0000000000
 Solution:
 168
 156

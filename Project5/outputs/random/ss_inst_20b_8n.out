@@ -1,4 +1,10 @@
 Input: ss_inst_20b_8n
-Target: 3000088ll
+Target: 3000088
 Size: 8
-Solved: NO, 0 seconds, 2966395ll, 0.9887693524
+Initial: 2512159
+Solved: YES, 0 seconds, 3000088, 1.0000000000
+Solution:
+740691
+642876
+974805
+641716

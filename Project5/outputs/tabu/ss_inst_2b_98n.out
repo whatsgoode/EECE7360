@@ -1,7 +1,8 @@
 Input: ss_inst_2b_98n
-Target: 81ll
+Target: 81
 Size: 98
-Solved: YES, 0 seconds, 81ll, 1.0000000000
+Initial: 81
+Solved: YES, 0 seconds, 81, 1.0000000000
 Solution:
 1
 3

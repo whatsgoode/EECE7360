@@ -1,4 +1,5 @@
 Input: ss_inst_23b_20n
-Target: 30351927ll
+Target: 30351927
 Size: 20
-Solved: NO, 0 seconds, 30204006ll, 0.9951264262
+Initial: 29664578
+Solved: NO, 0 seconds, 30196718, 0.9948863387

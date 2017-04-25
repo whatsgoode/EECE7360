@@ -1,7 +1,8 @@
 Input: ss_inst_10b_4n
-Target: 1002ll
+Target: 1002
 Size: 4
-Solved: YES, 0 seconds, 1002ll, 1.0000000000
+Initial: 650
+Solved: YES, 0 seconds, 1002, 1.0000000000
 Solution:
 547
 455

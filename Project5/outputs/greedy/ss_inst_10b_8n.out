@@ -1,4 +1,5 @@
 Input: ss_inst_10b_8n
-Target: 2563ll
+Target: 2563
 Size: 8
-Solved: NO, 0 seconds, 2441ll, 0.9523995519
+Initial: 1908
+Solved: NO, 0 seconds, 2441, 0.9523995519

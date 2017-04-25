@@ -1,7 +1,8 @@
 Input: ss_inst_2b_10n
-Target: 13ll
+Target: 13
 Size: 10
-Solved: YES, 0 seconds, 13ll, 1.0000000000
+Initial: 13
+Solved: YES, 0 seconds, 13, 1.0000000000
 Solution:
 3
 3

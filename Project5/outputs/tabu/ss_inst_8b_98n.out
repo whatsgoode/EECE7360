@@ -1,7 +1,8 @@
 Input: ss_inst_8b_98n
-Target: 6219ll
+Target: 6219
 Size: 98
-Solved: YES, 0 seconds, 6219ll, 1.0000000000
+Initial: 6213
+Solved: YES, 0 seconds, 6219, 1.0000000000
 Solution:
 87
 141

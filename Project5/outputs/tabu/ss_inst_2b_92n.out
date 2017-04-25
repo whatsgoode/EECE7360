@@ -1,7 +1,8 @@
 Input: ss_inst_2b_92n
-Target: 57ll
+Target: 57
 Size: 92
-Solved: YES, 0 seconds, 57ll, 1.0000000000
+Initial: 57
+Solved: YES, 0 seconds, 57, 1.0000000000
 Solution:
 3
 0

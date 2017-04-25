@@ -1,4 +1,5 @@
 Input: ss_inst_26b_8n
-Target: 106750334ll
+Target: 106750334
 Size: 8
-Solved: NO, 0 seconds, 105203606ll, 0.9855107665
+Initial: 85629568
+Solved: NO, 0 seconds, 105203606, 0.9855107665

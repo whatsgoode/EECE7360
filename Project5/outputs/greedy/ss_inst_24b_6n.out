@@ -1,4 +1,5 @@
 Input: ss_inst_24b_6n
-Target: 30135267ll
+Target: 30135267
 Size: 6
-Solved: NO, 0 seconds, 27075719ll, 0.8984728456
+Initial: 26971700
+Solved: NO, 0 seconds, 27075719, 0.8984728456

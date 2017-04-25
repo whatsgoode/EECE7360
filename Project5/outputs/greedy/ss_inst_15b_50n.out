@@ -1,4 +1,5 @@
 Input: ss_inst_15b_50n
-Target: 449238ll
+Target: 449238
 Size: 50
-Solved: NO, 0 seconds, 449092ll, 0.9996749759
+Initial: 448469
+Solved: NO, 0 seconds, 449092, 0.9996749759

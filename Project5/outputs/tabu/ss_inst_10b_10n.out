@@ -1,4 +1,5 @@
 Input: ss_inst_10b_10n
-Target: 2688ll
+Target: 2688
 Size: 10
-Solved: NO, 0 seconds, 2671ll, 0.9936755896
+Initial: 2671
+Solved: NO, 0 seconds, 2671, 0.9936755896

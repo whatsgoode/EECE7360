@@ -1,4 +1,5 @@
 Input: ss_inst_22b_10n
-Target: 7781308ll
+Target: 7781308
 Size: 10
-Solved: NO, 0 seconds, 7539425ll, 0.9689148664
+Initial: 7539425
+Solved: NO, 0 seconds, 7539425, 0.9689148664

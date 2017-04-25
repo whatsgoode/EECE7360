@@ -18,11 +18,45 @@ import argparse
 import os
 import glob
 
+END_SUM = 2
 BIT_WIDTH = 2
 NUM_ELEMS = 3
 MARGIN = 3
 RUNTIME = 1 
 
+def get_final_improvement_over_initial(fname):
+    """Figure out how much the resulting sum improved over the initial one."""
+    fhandle = open(fname, 'r')
+
+    resulting_sum = -1
+    initial_sum = -1
+    
+    for line in fhandle.readlines():
+        if 'Initial' in line:
+            initial_sum = float(line.split()[-1])
+        elif 'Target' in line:
+            target_sum = float(line.split()[-1])            
+        else:
+            if 'YES' in line:
+                resulting_sum = target_sum
+            elif 'NO' in line:
+                resulting_sum = float(line.split(',')[END_SUM])
+                pass
+            pass
+        pass
+
+    try:
+        assert resulting_sum >= 0
+        assert initial_sum >= 0
+    except AssertionError:
+        print 'File:', fname
+        raise
+
+    if initial_sum == 0:
+        return 0
+    else:
+        return resulting_sum / initial_sum
+            
 def get_margin(fname, ampl):
     """Extract the margin of error for the instance."""
     fhandle = open(fname, 'r')
@@ -90,7 +124,11 @@ def get_bit_width(string):
     # Sample name: ss_inst_27b_18n.out
     # Just split by the '_' char. 
     # Remove the 'b' char at the end of term.
-    return int(os.path.basename(string).split('_')[BIT_WIDTH][:-1])
+    try:
+        return int(os.path.basename(string).split('_')[BIT_WIDTH][:-1])
+    except IndexError:
+        print string
+    pass
 
 def get_num_elems(string):
     """Extract the number of elements in the set from the file name."""
@@ -257,6 +295,83 @@ def generate_report(dir_name, ampl, uniquifier):
                 # Add the meaningful data for this cell
                 # Extract the % margin for this instance
                 final_row.append(get_runtime(matches[0], ampl))
+                instance_names.append('%sn%sb' % (str(elem_count), str(bit_width)))
+                # For debug -- report file name itself
+#                final_row.append(matches[0])
+                pass
+            pass
+        pass
+    fhandle.write(','.join(str(n) for n in final_row) + '\n')
+    fhandle.write(','.join(str(n) for n in instance_names) + '\n')
+
+    fhandle.close()
+
+    ####################################################################
+    # Generate a csv reporting how much the resulting solution
+    # improved over the initial solution
+
+    fhandle = open('final_initial_compare' + uniquifier + '.csv', 'w')
+    fhandle.write(',' + ','.join(str(n) for n in bit_width_list) + '\n')
+
+    for elem_count in num_elems_list:
+        # Find all files that match this elem_count
+        matching_num_elems = [fname for fname in file_list if get_num_elems(fname) == elem_count]
+
+        # Sort from smallest bit-width to largest
+        # BOZO_dhullih: currently not needed
+        matching_num_elems = sorted(matching_num_elems, key=lambda k: get_bit_width(k))
+
+        final_row = []
+        # BOZO_dhullih: This is just generally inefficient, but given the relatively
+        # small number of instances we're processing, you won't notice
+        for index, bit_width in enumerate(bit_width_list):
+            # See if there is a corresponding file that matches this bit width
+            # If there is, report the data, else report nothing for that entry
+            matches = [fname for fname in matching_num_elems if get_bit_width(fname) == bit_width]
+            assert len(matches) < 2, "Found multiple matches (%s), which is not expected." % matches
+
+            if len(matches) == 0:
+                final_row.append(' ')
+            else:
+                # Add the meaningful data for this cell
+                # Extract the % margin for this instance
+                final_row.append(get_final_improvement_over_initial(matches[0]))
+                # For debug -- report file name itself
+#                final_row.append(matches[0])
+                pass
+            pass
+            
+        fhandle.write(str(elem_count) + ',' + ','.join(str(n) for n in final_row) + '\n')
+
+    fhandle.close()
+
+    ####################################################################    
+    # ... same data, but in a format to lend itself to a plot
+    fhandle = open('margin_error_plot' + uniquifier + '.csv', 'w')
+    instance_names = []
+    final_row = []    
+    for elem_count in num_elems_list:
+        # Find all files that match this elem_count
+        matching_num_elems = [fname for fname in file_list if get_num_elems(fname) == elem_count]
+
+        # Sort from smallest bit-width to largest
+        # BOZO_dhullih: currently not needed
+        matching_num_elems = sorted(matching_num_elems, key=lambda k: get_bit_width(k))
+
+        # BOZO_dhullih: This is just generally inefficient, but given the relatively
+        # small number of instances we're processing, you won't notice
+        for index, bit_width in enumerate(bit_width_list):
+            # See if there is a corresponding file that matches this bit width
+            # If there is, report the data, else report nothing for that entry
+            matches = [fname for fname in matching_num_elems if get_bit_width(fname) == bit_width]
+            assert len(matches) < 2, "Found multiple matches (%s), which is not expected." % matches
+
+            if len(matches) == 0:
+                pass
+            else:
+                # Add the meaningful data for this cell
+                # Extract the % margin for this instance
+                final_row.append(get_margin(matches[0], ampl))
                 instance_names.append('%sn%sb' % (str(elem_count), str(bit_width)))
                 # For debug -- report file name itself
 #                final_row.append(matches[0])

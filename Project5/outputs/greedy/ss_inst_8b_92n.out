@@ -1,7 +1,8 @@
 Input: ss_inst_8b_92n
-Target: 6036ll
+Target: 6036
 Size: 92
-Solved: YES, 0 seconds, 6036ll, 1.0000000000
+Initial: 6032
+Solved: YES, 0 seconds, 6036, 1.0000000000
 Solution:
 125
 166

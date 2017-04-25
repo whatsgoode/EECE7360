@@ -1,7 +1,5 @@
 Input: ss_inst_26b_4n
-Target: 107961781ll
+Target: 107961781
 Size: 4
-Solved: YES, 0 seconds, 107961781ll, 1.0000000000
-Solution:
-44093690
-63868091
+Initial: 107791440
+Solved: NO, 0 seconds, 107791440, 0.9984222054

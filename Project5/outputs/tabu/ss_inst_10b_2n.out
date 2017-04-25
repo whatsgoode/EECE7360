@@ -1,6 +1,7 @@
 Input: ss_inst_10b_2n
-Target: 540ll
+Target: 540
 Size: 2
-Solved: YES, 0 seconds, 540ll, 1.0000000000
+Initial: 540
+Solved: YES, 0 seconds, 540, 1.0000000000
 Solution:
 540

@@ -32,6 +32,7 @@ struct Subset_Sum_s
     uint8_t * saucSolution;
     uint32_t suwSize;
     uint64_t sulTarget;
+    uint64_t sulInitialSol;
     Algorithm_t spfSolver; 
 };
 
