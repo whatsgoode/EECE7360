@@ -672,6 +672,63 @@ benefit of this approach is, given a sufficiently large window of history, we ca
 where locally optimal solutions exist, and possibly find an even better solution. In this case,
 we kept a history of the past 100 solutions that were considered.
 
+\section{Results}
+Given the different approaches to the initial solution, it is possible that this impacted
+the locally optimal solution for the instance. This can be expressed as a ratio of the sum of
+the locally optimal solution divided by the initial sum was found. Figures ~\ref{fig:greedy_final_initial_compare} and
+~\ref{fig:random_final_initial_compare} show the amount of benefit the 1-OPT algorithm was able to
+provide over the initial solutions that were found. In general, neither algorithm provided a significant advantage over
+the other. That said, the instances that show the largest benefit were typically low density (i.e. smaller values
+and a small number of elements in the set). This is most likely due to the fact that, given fewer numbers in a set and small
+numbers in general, adding and removing values is going to have a disproportionate impact on the current sum. Several instances
+show a value of 1.00, which means that the initial solution was actually sufficient. Ignoring the top-left region and the instances
+that showed no benefit, the remaining instances generally show only minor improvements.
+
+It appears that the random algorithm did help some of the smaller density instances. Interestingly enough, given
+the random algorithm, it actually led to some cases where the instance could not be solved. This would mean
+that there there no solution that contained n elements, as selected in the initial solution. In that case the ``landscape''
+was flat, with no locally optimal solution in the neighborhood.
+
+On average, starting with the initial solution found via the greedy algorithm, 1-OPT was able to generate a solution
+with a sum that was 1.073 times larger on average. When the random algorithm was used instead, 1-OPT was able to come up
+with a solution that was 1.126 times larger than the initial solution on average. Note that we will not exceed the target sum.
+So, on average, starting with the solution generated via random
+was better. This may be do to the fact that with the greedy algorithm, there is little room for diversification.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{p5_greedy_final_over_initial.png}
+  \caption{Improvement of final sum over intial sum found via greedy algorithm}
+  \label{fig:greedy_final_initial_compare}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{p5_random_final_over_initial.png}
+  \caption{Improvement of final sum over intial sum found via random algorithm}
+  \label{fig:random_final_initial_compare}
+\end{figure}
+
+Figure ~\ref{fig:tabu_final_initial_compare} shows the benefit provided by the tabu algorithm.
+Note that, compared to the random algorithm, a locally optimal solution was found for each instance. On average,
+the final sum found in the tabu algorithm was 1.073 times larger than the initial solution. This is actually similar
+to the greedy algorithm, and technically worse on average than the random algorithm. This may be due to not using
+a large enough window, leading us to slip back down into the original valley and settle on the locally optimal solution there.
+This would imply relatively steep valleys, which is interesting given the improvements shown in the random algorithm
+imply large ``flat'' areas where there is no locally optimal solution (or, technically where all solutions are locally optimal).
+In terms of the shape of the landscape in general, it would appear that, depending on the density of the instance,
+the can be very flat areas where local search fails, and very steep areas where a significantly large window is needed
+by tabu in order to find another valley (and thus another possible locally optimal solution).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{p5_tabu_final_over_initial.png}
+  \caption{Improvement of final sum over intial sum using Tabu}
+  \label{fig:tabu_final_initial_compare}
+\end{figure}
+
+The 
+
 \chapter{Conclusion}
 Nothing yet dawg.
 
