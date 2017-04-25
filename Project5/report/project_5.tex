@@ -15,28 +15,6 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-%Code listing style named "mystyle"
-\lstdefinestyle{mystyle}{
-  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
-  keywordstyle=\color{magenta},
-  numberstyle=\tiny\color{codegray},
-  stringstyle=\color{codepurple},
-  basicstyle=\footnotesize,
-  breakatwhitespace=false,         
-  breaklines=false,                 
-  captionpos=b,                    
-  keepspaces=true,                 
-  numbers=left,                    
-  numbersep=5pt,                  
-  showspaces=false,                
-  showstringspaces=false,
-  showtabs=false,                  
-  tabsize=2
-}
-
-%"mystyle" code listing set
-\lstset{style=mystyle}
-
 \begin{document}
 
 \title{EECE 7360 Project 5 \\
@@ -666,7 +644,7 @@ get closer to the target sum). In that case we have found a locally
 optimal solution and stop. Thus, starting with the initial solution found via the greedy and random
 algorithms, we take 1-OPT and continue to drill down to the nearest locally optimal solution.
 
-As a point of comparison, we also implemented the tabu algorithm. In this case, we maintain a history
+As a point of comparison, we also implemented the Tabu search algorithm. In this case, we maintain a history
 of previous solutions considered, avoiding those solutions when looking for new ones. The general
 benefit of this approach is, given a sufficiently large window of history, we can escape ``valleys''
 where locally optimal solutions exist, and possibly find an even better solution. In this case,
@@ -700,13 +678,13 @@ a better locally optimal solution.
   \label{fig:random_opt_margin}
 \end{figure}
 
-For the tabu algorithm, we came within 0.994 of the target sum, which matches the result of the greedy algorithm. This
+For Tabu, we came within 0.994 of the target sum, which matches the result of the greedy algorithm. This
 may be because not a short enough history window was used.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=12cm]{p5_tabu_margin.png}
-  \caption{Margin of error of 1-OPT with Tabu algorithm initial solution}
+  \caption{Margin of error of 1-OPT with Tabu search algorithm initial solution}
   \label{fig:tabu_opt_margin}
 \end{figure}
 
@@ -748,14 +726,14 @@ So, on average, starting with the solution led to the largest improvement in the
 
 Figure~\ref{fig:tabu_final_initial_compare} shows the benefit provided by the tabu algorithm.
 Note that, compared to the random algorithm, a locally optimal solution was found for each instance. On average,
-the final sum found in the tabu algorithm was 1.073 times larger than the initial solution. This is actually similar
+the final sum found in the Tabu search algorithm was 1.073 times larger than the initial solution. This is actually similar
 to the greedy algorithm, and technically worse on average than the random algorithm. This may be due to not using
 a large enough window, leading us to slip back down into the original valley and settle on the locally optimal solution there.
 This would imply relatively steep valleys, which is interesting given the improvements shown in the random algorithm
 imply large ``flat'' areas where there is no locally optimal solution (or, technically where all solutions are locally optimal).
 In terms of the shape of the landscape in general, it would appear that, depending on the density of the instance,
 the can be very flat areas where local search fails, and very steep areas where a significantly large window is needed
-by tabu in order to find another valley (and thus another possible locally optimal solution).
+by Tabu in order to find another valley (and thus another possible locally optimal solution).
 
 \begin{figure}[h]
   \centering
@@ -765,7 +743,7 @@ by tabu in order to find another valley (and thus another possible locally optim
 \end{figure}
 
 It is interesting to see that, while the margin of error from the greedy algorithm implementation was smaller than
-that of the random algorithm (and matching that of tabu), the actual amount of improvement over the inital sum was largest
+that of the random algorithm (and matching that of Tabu), the actual amount of improvement over the inital sum was largest
 for the random algorithm. This highlights the benefit of local searches and de-emphasizes the importantace of how exactly
 the initial solution is found in this case. 
 
@@ -806,10 +784,10 @@ Focusing on a higher-level view across the different algorithms, Figure~\ref{fig
 of the final sum and target sum across all instances for each algorithm. The range of the plot was cut to give greater emphasis to the
 variation between the non-exhaustive search algorithms. The exhaustive search algorithm, given its inability to solve higher-density
 instances, is naturally going to have a lower ratio on average. The local search algorithms provide decent margin, with the greedy
-and tabu implementations in particularly proving to be better than random. That said, the ILP and LP models prove to be the best in the
+and Tabu implementations in particularly proving to be better than random. That said, the ILP and LP models prove to be the best in the
 group. However, there is going to be the trade-off in run-time, as can be seen in Figure~\ref{fig:runtime_comparison}. Remember
 that there was significant variation across the instances for the ILP algorithm, but not for LP. Depending on how much margin one
-would be comfortable with having, the tabu algorithm may be a better trade-off. 
+would be comfortable with having, the Tabu algorithm may be a better trade-off. 
 
 \begin{figure}[h]
   \centering
@@ -819,7 +797,45 @@ would be comfortable with having, the tabu algorithm may be a better trade-off.
 \end{figure}
 
 \chapter{Conclusion}
+Through this project we have done a deep exploration of the subset sum problem. We developed a suite of benchmark tests to evaluate
+a variety of algorithms that can be used to solve instances of this problem. These instances vary by their density, or the ratio of
+the number of elements in the set and the maximum bit width in the set. Each algorithm showed different results when run on the suite
+of instances, highlighting strengths and weaknesses. A literature review was also done to highlight subproblems of subset sum that have
+unique properties that could possibly be exploited by some solvers (if they were to identify these properties before-hand, and
+apply a given solver accordingly).
 
+The exhaustive search algorithm's mileage varies significantly, but nevertheless is able to work on instances with a small enough number
+of elements in the initial set.
+This algorithm is actually a bit more agnostic to the density metric, being able to solve high density instances so long as
+there are sufficiently few enough elements in the original set. However, once the sets become large enough, this algorithm very quickly
+starts to take much too long to solve anything. 
+
+The greedy algorithm is relatively quick to come up with some solution, but it is inherently prone to making a ``wrong decision''
+that it cannot undo, ending up on a path that will never lead it to the correct solution.
+This is particularly apparent for instances with relatively small
+sets and large numbers; in that case the solver may incorrectly chose some number to include in its set, but the inclusion of that number
+actually may not be allowed in the final set. This introduces a margin of error that can vary significantly, but on the other hand
+leads to a low computation time.
+
+The LP solver proved to be the fastest solver, but at the same time did not produce a valid solution because fractions of values
+in the original set are used. The ILP solver addresses this constraint, but is directly trying to solve the true NP-complete problem. Nevertheless,
+the ILP solver was able to solve all of the instances, albeit with significant variation in run time. While the LP solver can provide
+a bound for the ILP solver, the bound is technically already known in the sense that we know what the target sum, so really the LP solver itself
+does not provide much in this context. Linear programming in general has proved to be a very powerful tool in solving all of these instances.
+
+The last set of the algorithms that were evaluated were the local search algorithms. Initial instances were created via the greedy and random
+algorithms, using 1-OPT to define and explore the neighborhood. Starting with an instance from the greedy algorithm proved to yield slightly
+better results, granted the solution random/1-OPT algorithm was significantly improved. Yet interestingly
+some instances could not even be solved with with random/1-OPT, highlighting the fact that, in the landscape of possible solutions,
+there can be flat areas where all local solutions are equally optimal. 
+Lastly, a Tabu search
+algorithm was implemented, proving to be comparable to the the greedy/1-OPT algorithm. The window size of 100 that was used in Tabu may
+have been too small. The fact that this window size proved inadequate suggests that the locally optimal solutions are in very steep ``valleys.''
+Coupled with the results seen from the random/1-OPT algorithm, it is interesting to see that the landscape of subset sum solutions can vary
+wildly from extremely flat (all solutions are equally good) to extremely steep (a significantly large Tabu window is needed in order to find
+signifcant locally optimal solution). This becomes a trade-off of memory consumption of the window and how much better a locally optimal
+solution we can hope to find. We also found that the 1-OPT neighborhood was relatively small, with each of our algorithms able to iterate
+through all possible neighbors. 
 
 \bibliography{references}
 \bibliographystyle{plain}
