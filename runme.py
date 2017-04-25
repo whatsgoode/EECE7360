@@ -80,7 +80,7 @@ def get_margin(fname, ampl):
                     # This is to account for Project1's slightly different format
                     # (if it didn't solve it in 10 minutes, it simply gave up)                    
                     if 'YES' in line:
-                        margin = 0
+                        margin = 1
                     else:
                         margin = 'inf'
                         pass
